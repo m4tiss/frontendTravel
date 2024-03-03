@@ -1,9 +1,10 @@
-
+import NavBar from './components/Navbar';
 import './index.css'
 
 function App() {
   return (
-    <div className="h-screen">
+    <div class="h-screen w-full">
+      <NavBar/>
     </div>
   );
 }

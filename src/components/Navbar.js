@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactCountryFlag from "react-country-flag";
+import { Outlet, Link } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
 import { HiMenu } from "react-icons/hi";
 
@@ -12,7 +13,9 @@ const NavBar = () => {
         <div class="flex items-center justify-center w-full h-28 bg-blue-700">
           <div class="w-11/12 flex justify-around items-center md:w-4/5">
             <div>
-              <h2 class="text-white text-3xl font-semibold">TripTrackers</h2>
+              <Link to="/">
+                <h2 class="text-white text-3xl font-semibold">TripTrackers</h2>
+              </Link>
             </div>
             <div class="hidden md:flex justify-center items-center">
               <div class="w-11 h-11 flex justify-center items-center rounded-md hover:bg-blue-600 cursor-pointer">
@@ -46,12 +49,16 @@ const NavBar = () => {
               </div>
             </div>
             <div class="hidden md:flex">
-              <button class="bg-white w-40 h-10 font-semibold text-blue-400  border-2 border-blue-400 rounded-md mx-2 hover:bg-slate-300">
-                Zarejestruj się
-              </button>
-              <button class="bg-white w-40 h-10 font-semibold text-blue-400 border-2 border-blue-400 rounded-md mx-2 hover:bg-slate-300">
-                Zaloguj się
-              </button>
+              <Link to="/Register">
+                <button class="bg-white w-40 h-10 font-semibold text-blue-400  border-2 border-blue-400 rounded-md mx-2 hover:bg-slate-300">
+                  Zarejestruj się
+                </button>
+              </Link>
+              <Link to="/Login"> 
+                <button class="bg-white w-40 h-10 font-semibold text-blue-400 border-2 border-blue-400 rounded-md mx-2 hover:bg-slate-300">
+                  Zaloguj się
+                </button>
+              </Link>
             </div>
             <div class="md:hidden" onClick={() => setNav(!nav)}>
               <HiMenu color="white" size={40} />
@@ -104,12 +111,16 @@ const NavBar = () => {
               </div>
             </div>
             <div class="flex  flex-col items-center justify-center my-10">
-              <button class="bg-white w-40 h-10 font-semibold text-blue-400  border-2 border-blue-400 rounded-md mx-2 hover:bg-slate-300 my-5">
-                Zarejestruj się
-              </button>
-              <button class="bg-white w-40 h-10 font-semibold text-blue-400 border-2 border-blue-400 rounded-md mx-2 hover:bg-slate-300 my-5">
-                Zaloguj się
-              </button>
+              <Link to="/Register">
+                <button onClick={() => setNav(!nav)} class="bg-white w-40 h-10 font-semibold text-blue-400  border-2 border-blue-400 rounded-md mx-2 hover:bg-slate-300 my-5">
+                  Zarejestruj się
+                </button>
+              </Link>
+              <Link to="/Login">
+                <button onClick={() => setNav(!nav)} class="bg-white w-40 h-10 font-semibold text-blue-400 border-2 border-blue-400 rounded-md mx-2 hover:bg-slate-300 my-5">
+                  Zaloguj się
+                </button>
+              </Link>
             </div>
           </div>
         </div>

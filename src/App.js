@@ -1,5 +1,7 @@
 import NavBar from './components/Navbar';
 import MainImage from './components/MainImage';
+import Footer from './components/Footer';
+import MostPopularCities from './components/MostPopularCities';
 import './index.css'
 
 function App() {
@@ -7,9 +9,8 @@ function App() {
     <div class="h-screen w-full">
       <NavBar/>
       <MainImage/>
-      <MainImage/>
-      <MainImage/>
-      <MainImage/>
+      <MostPopularCities/>
+      <Footer/>
     </div>
   );
 }

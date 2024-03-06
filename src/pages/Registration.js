@@ -1,7 +1,7 @@
 import React from "react";
 import LoginImage from "../images/LoginImage.jpg"
-
-const Login = () => {
+import {Link} from 'react-router-dom'
+const Registration = () => {
   return (
     <div className="w-full h-full flex justify-evenly">
       <div className="hidden lg:flex justify-center">
@@ -9,7 +9,7 @@ const Login = () => {
       </div>
       <div className="w-96 flex flex-col mt-32">
         <h2 className="text-blue-500 text-4xl font-semibold my-10 text-center">
-          Logowanie
+          Rejestracja
         </h2>
         <input
           placeholder="Email"
@@ -19,9 +19,14 @@ const Login = () => {
           placeholder="Password"
           className="border-blue-500 border-solid border-l-8 p-2 text-3xl my-2 outline-none bg-slate-200"
         ></input>
+
+          <Link to='/Login' > 
+          <p className="text-blue-500 font-semibold hover:underline hover:cursor-pointer text-end ">Mam już konto</p>
+          </Link>
+        
         <div className="flex justify-center items-center m-6">
           <button class="text-xl bg-blue-400 w-96 h-10 font-semibold text-white border-2 border-blue-500 rounded-xl mx-2 hover:bg-slate-300">
-            Zaloguj się
+            Zajerestruj się
           </button>
         </div>
       </div>
@@ -29,4 +34,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Registration;

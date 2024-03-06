@@ -2,6 +2,7 @@ import NavBar from "./components/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from './pages/MainPage';
 import Login from './pages/Login';
+import Registration from "./pages/Registration";
 
 import Footer from "./components/Footer";
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/">
           <Route index element={<MainPage />} />
           <Route path="Login" element={<Login />} />
+          <Route path="Registration" element={<Registration />} />
           </Route>
         </Routes>
         <Footer />

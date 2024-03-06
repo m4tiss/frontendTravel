@@ -49,7 +49,7 @@ const NavBar = () => {
               </div>
             </div>
             <div class="hidden md:flex">
-              <Link to="/Register">
+              <Link to="/Registration">
                 <button class="bg-white w-40 h-10 font-semibold text-blue-400  border-2 border-blue-400 rounded-md mx-2 hover:bg-slate-300">
                   Zarejestruj się
                 </button>
@@ -111,7 +111,7 @@ const NavBar = () => {
               </div>
             </div>
             <div class="flex  flex-col items-center justify-center my-10">
-              <Link to="/Register">
+              <Link to="/Registration">
                 <button onClick={() => setNav(!nav)} class="bg-white w-40 h-10 font-semibold text-blue-400  border-2 border-blue-400 rounded-md mx-2 hover:bg-slate-300 my-5">
                   Zarejestruj się
                 </button>

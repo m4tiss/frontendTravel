@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactCountryFlag from "react-country-flag";
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
 import { HiMenu } from "react-icons/hi";
 

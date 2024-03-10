@@ -1,8 +1,9 @@
 import NavBar from "./components/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from './pages/MainPage';
-import Login from './pages/Login';
-import Registration from "./pages/Registration";
+import Login from './pages/LoginPage';
+import Registration from "./pages/RegistrationPage";
+import CityPage from "./pages/CityPage";
 
 import Footer from "./components/Footer";
 
@@ -18,6 +19,7 @@ function App() {
           <Route index element={<MainPage />} />
           <Route path="Login" element={<Login />} />
           <Route path="Registration" element={<Registration />} />
+          <Route path="CityPage/:id" element={<CityPage/>}/>
           </Route>
         </Routes>
         <Footer />

@@ -6,16 +6,16 @@ import OpinionPanel from "../components/OpinionPanel";
 const CityPage = (props) => {
   return (
     <div className="w-full min-h-full flex flex-col">
-      <div className="w-full flex justify-evenly my-20">
+      <div className="w-full flex flex-col gap-5 items-center md:justify-evenly md:flex-row  my-20 ">
         <div
-          className="w-[900px] h-[500px] rounded-xl"
+          className="w-[300px] h-[200px] md:w-[450px] md:h-[250px] xl:w-[900px] xl:h-[500px] rounded-xl"
           style={{
             backgroundImage: `url(${WarszawaImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
         ></div>
-        <div className="bg-slate-200 w-96 rounded-lg">
+        <div className="w-80 bg-slate-200 md:w-96 rounded-lg">
           <h2 className="font-semibold text-3xl text-center mt-10 ">Warszawa</h2>
           <p className="mx-8 mt-8">Kontynent: Europa</p>
           <div className="flex mx-8 mt-8">
@@ -34,7 +34,7 @@ const CityPage = (props) => {
           <p className="mx-8 mt-8" >Ilość mieszkańców: 1 600 000</p>
           <div className="mt-20 flex flex-col items-center justify-center">
               <h2 className="text-3xl font-semibold">Ocena</h2>
-              <p className="text-3xl font-semibold" >8/10</p>
+              <p className="text-3xl font-semibold my-5" >8/10</p>
           </div>
         </div>
       </div>

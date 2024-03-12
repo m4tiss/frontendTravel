@@ -4,10 +4,11 @@ import MainPage from './pages/MainPage';
 import Login from './pages/LoginPage';
 import Registration from "./pages/RegistrationPage";
 import CityPage from "./pages/CityPage";
-
 import Footer from "./components/Footer";
+import AllCitiesPanel from "./pages/AllCitiesPage";
 
 import "./index.css";
+
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="Login" element={<Login />} />
           <Route path="Registration" element={<Registration />} />
           <Route path="CityPage/:id" element={<CityPage/>}/>
+          <Route path="AllCities" element={<AllCitiesPanel/>}/>
           </Route>
         </Routes>
         <Footer />

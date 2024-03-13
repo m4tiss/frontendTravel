@@ -2,11 +2,11 @@ import React from "react";
 import CityPanel from "../components/CityPanel";
 const AllCitiesPanel = () => {
   return (
-    <div className="w-full h-full flex">
-      <div className="w-96 bg-yellow-300 flex flex-col items-center">
+    <div className="w-full  min-h-full md:flex">
+      <div className="w-full bg-yellow-300 flex flex-col items-center md:w-96">
         <div className="my-10">
           <input
-            className=" w-66 h-20 text-xl px-8 outline-none rounded-full text-black shadow-xl border border-gray-300"
+            className=" w-64 h-20 text-xl px-8 outline-none rounded-full text-black shadow-xl border border-gray-300"
             placeholder="Czego szukasz?  🔍"
           />
         </div>
@@ -93,7 +93,7 @@ const AllCitiesPanel = () => {
         </div>
       </div>
       <div className="flex-grow flex justify-center my-10">
-        <div className="w-9/12 flex flex-col items-center">
+        <div className="w-10/12 flex flex-col items-center">
           <h2 className="text-black font-semibold text-xl ">
             Zaplanuj swoje podróże, odkrywaj nowe miejsca, dziel się swoimi
             wrażeniami - podróżuj, zwiedzaj, oceniaj, i kreuj niezapomniane

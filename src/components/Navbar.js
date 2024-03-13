@@ -3,9 +3,17 @@ import ReactCountryFlag from "react-country-flag";
 import { Link } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
 import { HiMenu } from "react-icons/hi";
+import { useTranslation } from "react-i18next";
+
 
 const NavBar = () => {
   const [nav, setNav] = useState(true);
+  const { t, i18n } = useTranslation();
+
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <div>
@@ -18,7 +26,7 @@ const NavBar = () => {
               </Link>
             </div>
             <div class="hidden md:flex justify-center items-center">
-              <div class="w-11 h-11 flex justify-center items-center rounded-md hover:bg-blue-600 cursor-pointer">
+              <div class="w-11 h-11 flex justify-center items-center rounded-md hover:bg-blue-600 cursor-pointer" onClick={() => changeLanguage("pl")}>
                 <ReactCountryFlag
                   countryCode="PL"
                   svg
@@ -33,7 +41,7 @@ const NavBar = () => {
                 />
               </div>
 
-              <div class="w-11 h-11 flex justify-center items-center rounded-md hover:bg-blue-600 cursor-pointer">
+              <div class="w-11 h-11 flex justify-center items-center rounded-md hover:bg-blue-600 cursor-pointer" onClick={() => changeLanguage("en")}>
                 <ReactCountryFlag
                   countryCode="GB"
                   svg
@@ -48,20 +56,22 @@ const NavBar = () => {
                 />
               </div>
             </div>
-            <div className="hidden md:flex justify-center items-center">
-            <Link to="/AllCities">
-                <h2 class="text-white text-xl font-semibold hover:cursor-pointer hover:text-yellow-300">Zobacz wszytskie</h2>
+            <div className="w-40 hidden md:flex justify-center items-center">
+              <Link to="/AllCities">
+                <h2 class=" text-white text-xl font-semibold hover:cursor-pointer hover:text-yellow-300">
+                  {t('navbar.showAll')}
+                </h2>
               </Link>
             </div>
             <div class="hidden md:flex">
               <Link to="/Registration">
                 <button class="bg-white w-40 h-10 font-semibold text-blue-400  border-2 border-blue-400 rounded-md mx-2 hover:bg-slate-300">
-                  Zarejestruj się
+                {t('navbar.register')}
                 </button>
               </Link>
-              <Link to="/Login"> 
+              <Link to="/Login">
                 <button class="bg-white w-40 h-10 font-semibold text-blue-400 border-2 border-blue-400 rounded-md mx-2 hover:bg-slate-300">
-                  Zaloguj się
+                {t('navbar.logIn')}
                 </button>
               </Link>
             </div>
@@ -85,7 +95,7 @@ const NavBar = () => {
               </h2>
             </div>
             <div className="flex justify-center items-center my-10">
-              <div class="w-30 h-30 flex justify-center items-center rounded-md hover:bg-blue-600 cursor-pointer">
+              <div class="w-30 h-30 flex justify-center items-center rounded-md hover:bg-blue-600 cursor-pointer" onClick={() => changeLanguage("pl")}>
                 <ReactCountryFlag
                   countryCode="PL"
                   svg
@@ -100,7 +110,7 @@ const NavBar = () => {
                 />
               </div>
 
-              <div class="w-30 h-30  flex justify-center items-center rounded-md hover:bg-blue-600 cursor-pointer">
+              <div class="w-30 h-30  flex justify-center items-center rounded-md hover:bg-blue-600 cursor-pointer" onClick={() => changeLanguage("en")}>
                 <ReactCountryFlag
                   countryCode="GB"
                   svg
@@ -115,22 +125,29 @@ const NavBar = () => {
                 />
               </div>
             </div>
-            
 
             <div className="flex justify-center items-center my-2">
-            <Link to="/AllCities">
-                <h2 class="text-white text-xl font-semibold hover:cursor-pointer hover:text-yellow-300">Zobacz wszytskie</h2>
+              <Link to="/AllCities">
+                <h2 class="text-white text-xl font-semibold hover:cursor-pointer hover:text-yellow-300">
+                {t('navbar.showAll')}
+                </h2>
               </Link>
             </div>
             <div class="flex  flex-col items-center justify-center my-10">
               <Link to="/Registration">
-                <button onClick={() => setNav(!nav)} class="bg-white w-40 h-10 font-semibold text-blue-400  border-2 border-blue-400 rounded-md mx-2 hover:bg-slate-300 my-5">
-                  Zarejestruj się
+                <button
+                  onClick={() => setNav(!nav)}
+                  class="bg-white w-40 h-10 font-semibold text-blue-400  border-2 border-blue-400 rounded-md mx-2 hover:bg-slate-300 my-5"
+                >
+                  {t('navbar.register')}
                 </button>
               </Link>
               <Link to="/Login">
-                <button onClick={() => setNav(!nav)} class="bg-white w-40 h-10 font-semibold text-blue-400 border-2 border-blue-400 rounded-md mx-2 hover:bg-slate-300 my-5">
-                  Zaloguj się
+                <button
+                  onClick={() => setNav(!nav)}
+                  class="bg-white w-40 h-10 font-semibold text-blue-400 border-2 border-blue-400 rounded-md mx-2 hover:bg-slate-300 my-5"
+                >
+                 {t('navbar.logIn')}
                 </button>
               </Link>
             </div>

@@ -2,8 +2,12 @@ import React from "react";
 import WarszawaImage from "../images/citiesImages/Warszawa.jpg";
 import ReactCountryFlag from "react-country-flag";
 import OpinionPanel from "../components/OpinionPanel";
+import { useTranslation } from "react-i18next";
 
 const CityPage = (props) => {
+
+  const { t, i18n } = useTranslation();
+
   return (
     <div className="w-full min-h-full flex flex-col">
       <div className="w-full flex flex-col gap-5 items-center md:justify-evenly md:flex-row  my-20 ">
@@ -17,9 +21,9 @@ const CityPage = (props) => {
         ></div>
         <div className="w-80 bg-slate-200 md:w-96 rounded-lg">
           <h2 className="font-semibold text-3xl text-center mt-10 ">Warszawa</h2>
-          <p className="mx-8 mt-8">Kontynent: Europa</p>
+          <p className="mx-8 mt-8">{t('cityPage.continent')}: Europa</p>
           <div className="flex mx-8 mt-8">
-            <p>Kraj: Polska</p>
+            <p>{t('cityPage.country')}: Polska</p>
             <ReactCountryFlag
             className="mx-3 -mt-2"
               countryCode="PL"
@@ -31,14 +35,14 @@ const CityPage = (props) => {
               title="PL"
             />
           </div>
-          <p className="mx-8 mt-8" >Ilość mieszkańców: 1 600 000</p>
+          <p className="mx-8 mt-8" >{t('cityPage.population')}: 1 600 000</p>
           <div className="mt-20 flex flex-col items-center justify-center">
-              <h2 className="text-3xl font-semibold">Ocena</h2>
+              <h2 className="text-3xl font-semibold">{t('cityPage.rating')}</h2>
               <p className="text-3xl font-semibold my-5" >8/10</p>
           </div>
         </div>
       </div>
-      <h2 className="text-black text-2xl my-10 font-bold text-center">Opinie użytkowników</h2>
+      <h2 className="text-black text-2xl my-10 font-bold text-center">{t('cityPage.userReviews')}</h2>
       <div className="flex flex-col w-4/5 items-center mx-auto">
        <OpinionPanel/>
        <OpinionPanel/>

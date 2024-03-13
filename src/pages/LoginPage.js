@@ -1,7 +1,11 @@
 import React from "react";
 import LoginImage from "../images/LoginImage.jpg"
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
+
+  const { t, i18n } = useTranslation();
+
   return (
     <div className="w-full h-full flex justify-evenly">
       <div className="hidden lg:flex justify-center">
@@ -9,7 +13,7 @@ const Login = () => {
       </div>
       <div className="w-80 flex flex-col mt-32 md:w-96 ">
         <h2 className="text-blue-500 text-4xl font-semibold my-10 text-center">
-          Logowanie
+          {t('login.login')}
         </h2>
         <input
           placeholder="Email"
@@ -21,7 +25,7 @@ const Login = () => {
         ></input>
         <div className="flex justify-center items-center m-6">
           <button class="text-xl bg-blue-400 w-96 h-10 font-semibold text-white border-2 border-blue-500 rounded-xl mx-2 hover:bg-slate-300">
-            Zaloguj się
+          {t('login.logIn')}
           </button>
         </div>
       </div>

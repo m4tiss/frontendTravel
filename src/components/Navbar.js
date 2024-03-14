@@ -81,9 +81,9 @@ const NavBar = () => {
           </div>
         </div>
       ) : (
-        <div class="h-screen w-full flex flex-col items-center bg-gradient-to-b from-blue-800 via-blue-500 to-blue-200 text-white">
+        <div class="h-screen w-full fixed top-0 left-0 flex flex-col items-center bg-gradient-to-b from-blue-800 via-blue-500 to-blue-200 text-white">
           <div
-            class="w-full flex items-center justify-end px-8 py-8"
+            class="w-full  flex items-center justify-end px-8 py-8"
             onClick={() => setNav(!nav)}
           >
             <IoCloseOutline color="white" size={40} />

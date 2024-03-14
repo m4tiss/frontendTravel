@@ -7,6 +7,8 @@ import CityPage from "./pages/CityPage";
 import Footer from "./components/Footer";
 import AllCitiesPanel from "./pages/AllCitiesPage";
 import AccountUserPage from "./pages/AccountUserPage";
+import AccountAdminPage from "./pages/AccountAdminPage";
+
 import "./index.css";
 
 
@@ -24,6 +26,7 @@ function App() {
           <Route path="CityPage/:id" element={<CityPage/>}/>
           <Route path="AllCities" element={<AllCitiesPanel/>}/>
           <Route path="AccountUser" element={<AccountUserPage/>}/>
+          <Route path="AccountAdmin" element={<AccountAdminPage/>}/>
           </Route>
         </Routes>
         <Footer />

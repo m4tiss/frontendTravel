@@ -12,14 +12,14 @@ const CityPage = (props) => {
     <div className="w-full min-h-full flex flex-col">
       <div className="w-full flex flex-col gap-5 items-center md:justify-evenly md:flex-row  my-20 ">
         <div
-          className="w-[300px] h-[200px] md:w-[450px] md:h-[250px] xl:w-[900px] xl:h-[500px] rounded-xl"
+          className="w-[300px] h-[200px] md:w-[450px] md:h-[250px] xl:w-[900px] xl:h-[500px] rounded-xl shadow-2xl mb-10 md:mb-0"
           style={{
             backgroundImage: `url(${WarszawaImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
         ></div>
-        <div className="w-80 bg-slate-200 md:w-96 rounded-lg">
+        <div className="w-80 md:w-96 border-4 shadow-2xl bg-gray-100 border-yellow-400 rounded-3xl">
           <h2 className="font-semibold text-3xl text-center mt-10 ">Warszawa</h2>
           <p className="mx-8 mt-8">{t('cityPage.continent')}: Europa</p>
           <div className="flex mx-8 mt-8">
@@ -42,7 +42,7 @@ const CityPage = (props) => {
           </div>
         </div>
       </div>
-      <h2 className="text-black text-2xl my-10 font-bold text-center">{t('cityPage.userReviews')}</h2>
+      <h2 className="text-black text-2xl my-10 font-bold text-center justify-center items-center">{t('cityPage.userReviews')}✎</h2>
       <div className="flex flex-col w-4/5 items-center mx-auto">
        <OpinionPanel/>
        <OpinionPanel/>

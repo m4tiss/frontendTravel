@@ -35,7 +35,7 @@ const resources = {
         population: "Ludność",
         country: "Kraj",
         continent: "Kontynent",
-        rating: "Ocena",
+        rating: "Średnia ocena",
         userReviews: "Opinie użytkowników",
         addReview: "Dodaj opinie",
         addToFavorites: "Dodaj do ulubionych"
@@ -104,7 +104,7 @@ const resources = {
         population: "Population",
         country: "Country",
         continent: "Continent",
-        rating: "Rating",
+        rating: "Average rating",
         userReviews: "User reviews",
         addReview: "Add review",
         addToFavorites: "Add to favorites"

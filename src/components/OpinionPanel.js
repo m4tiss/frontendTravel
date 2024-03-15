@@ -15,7 +15,7 @@ const OpinionPanel = () => {
           <p className="mx-10 font-semibold">Maciuś2137</p>
         </div>
         <div className="flex justify-center items-center">
-          {[...Array(8)].map((_, index) => (
+          {[...Array(4)].map((_, index) => (
             <img
 
               key={index}
@@ -24,7 +24,7 @@ const OpinionPanel = () => {
               alt={`Image ${index + 1}`}
             />
           ))}
-                    {[...Array(2)].map((_, index) => (
+                    {[...Array(1)].map((_, index) => (
             <img
               key={index}
               className="w-[12px] h-[12px] md:w-[32px] md:h-[32px] mx-1"
@@ -32,7 +32,7 @@ const OpinionPanel = () => {
               alt={`Image ${index + 1}`}
             />
           ))}
-          <p className="mx-2 md:mx-8 text-2xl font-semibold">8/10</p>
+          <p className="mx-2 md:mx-8 text-2xl font-semibold">4/5</p>
         </div>
       </div>
       <div className="w-10/12 my-5 flex flex-col gap-5 justify-center items-center xl:flex-row">

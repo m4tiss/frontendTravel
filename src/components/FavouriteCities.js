@@ -13,10 +13,10 @@ const FavouritePanel = () => {
         {t("favouritesCities")}⭐
       </h2>
       <div className="flex flex-wrap gap-10 justify-center items-center">
-        <CityPanel name="Warszawa" />
-        <CityPanel name="Warszawa" />
-        <CityPanel name="Warszawa" />
-        <CityPanel name="Warszawa" />
+        {/* <CityPanel name="Warszawa" /> */}
+        {/* <CityPanel name="Warszawa" /> */}
+        {/* <CityPanel name="Warszawa" /> */}
+        {/* <CityPanel name="Warszawa" /> */}
       </div>
     </div>
   );

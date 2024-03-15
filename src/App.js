@@ -23,7 +23,7 @@ function App() {
           <Route index element={<MainPage />} />
           <Route path="Login" element={<LoginPage />} />
           <Route path="Registration" element={<Registration />} />
-          <Route path="CityPage/:id" element={<CityPage/>}/>
+          <Route path="CityPage/:cityId" element={<CityPage/>}/>
           <Route path="AllCities" element={<AllCitiesPanel/>}/>
           <Route path="AccountUser" element={<AccountUserPage/>}/>
           <Route path="AccountAdmin" element={<AccountAdminPage/>}/>

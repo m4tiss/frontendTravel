@@ -77,11 +77,11 @@ const AllCitiesPanel = () => {
             {t("allCities.upText")}
           </h2>
           <div className="min-h-96 flex gap-10  flex-wrap justify-center items-start my-20">
-            <CityPanel name="Warszawa" />
-            <CityPanel name="Warszawa" />
-            <CityPanel name="Warszawa" />
-            <CityPanel name="Warszawa" />
-            <CityPanel name="Warszawa" />
+            {/* <CityPanel name="Warszawa" /> */}
+            {/* <CityPanel name="Warszawa" /> */}
+            {/* <CityPanel name="Warszawa" /> */}
+            {/* <CityPanel name="Warszawa" /> */}
+            {/* <CityPanel name="Warszawa" /> */}
           </div>
           <div>1/20 {t("allCities.page")}</div>
         </div>

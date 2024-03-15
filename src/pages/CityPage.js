@@ -1,11 +1,38 @@
-import React from "react";
+import React, { useEffect, useState} from "react";
+import { useParams } from 'react-router-dom';
 import WarszawaImage from "../images/citiesImages/LosAngeles.jpg";
 import ReactCountryFlag from "react-country-flag";
 import OpinionPanel from "../components/OpinionPanel";
 import { useTranslation } from "react-i18next";
+import axios from "../config/axios";
 
-const CityPage = (props) => {
+
+const CityPage = () => {
   const { t, i18n } = useTranslation();
+  let { cityId } = useParams();
+  console.log(cityId);
+ const [city, setCity] = useState({});
+
+  useEffect(() => {
+    axios.get(`/getCity/${cityId}`).then((res) => {
+      const uploadedCity = res.data;
+      console.log(uploadedCity)
+      setCity(uploadedCity);
+    });
+  }, []);
+
+  const imagePath = city.cityImage ? require(`../images/citiesImages/${city.cityImage}`) : '';
+  const continentName = city.country && city.country.continent && city.country.continent.name;
+  const countryName = city.country && city.country.name
+  const flagImage = city.country && city.country.flagImage
+  const formattedPopulation = city.population ? city.population.toLocaleString() : null;
+  const formattedRating = city.rating ? `${city.rating.toFixed(1)}` : null;
+
+
+
+
+  console.log(continentName)
+  
 
   return (
     <div className="w-full min-h-full flex flex-col">
@@ -13,36 +40,26 @@ const CityPage = (props) => {
         <div className="relative w-[300px] h-[200px] md:w-[450px] md:h-[250px] xl:w-[900px] xl:h-[500px] rounded-xl shadow-2xl mb-10 md:mb-0 overflow-hidden">
           <img
             className="w-full h-full object-cover rounded-xl"
-            src={WarszawaImage}
+            src = {imagePath}
             alt="Warszawa"
           />
           <div className="overflow-y-auto lg:overflow-y-hidden absolute inset-0 flex justify-center items-center bg-black opacity-0 hover:opacity-80 transition-opacity duration-300 rounded-xl">
             <p className="flex justify-center flex-wrap items-center p-5 h-full text-white opacity-0 hover:opacity-100 duration-700 ease-in-out text-center transform translate-y-20 hover:translate-y-0">
-              Warszawa, stolica i największe miasto Polski, pełna historii i
-              kultury, to dynamiczne centrum życia społecznego, biznesowego i
-              artystycznego. Znana z bogatego dziedzictwa historycznego,
-              Warszawa była świadkiem wielu ważnych wydarzeń, od czasów
-              średniowiecznych po burzliwe XX wieku, włącznie z powstaniem
-              warszawskim. Spacerując ulicami miasta, można podziwiać
-              zróżnicowaną architekturę, która odzwierciedla różne epoki i
-              style, od gotyku i renesansu po współczesne budynki. Stare Miasto,
-              wpisane na Listę Światowego Dziedzictwa UNESCO, zachwyca swoimi
-              klimatycznymi uliczkami, malowniczymi kamienicami i Rynkiem
-              Starego Miasta.
+              {city.description}
             </p>
           </div>
         </div>
 
         <div className="w-80 md:w-96 border-4 shadow-2xl bg-gray-100 border-yellow-400 rounded-3xl">
           <h2 className="font-semibold text-3xl text-center mt-10 ">
-            Warszawa
+           {city.name}
           </h2>
-          <p className="mx-8 mt-8">{t("cityPage.continent")}: Europa</p>
+          <p className="mx-8 mt-8">{t("cityPage.continent")}: {continentName}</p>
           <div className="flex mx-8 mt-8">
-            <p>{t("cityPage.country")}: Polska</p>
+            <p>{t("cityPage.country")}: {countryName}</p>
             <ReactCountryFlag
               className="mx-3 -mt-2"
-              countryCode="PL"
+              countryCode={flagImage}
               svg
               style={{
                 width: "2em",
@@ -51,10 +68,10 @@ const CityPage = (props) => {
               title="PL"
             />
           </div>
-          <p className="mx-8 mt-8">{t("cityPage.population")}: 1 600 000</p>
+          <p className="mx-8 mt-8">{t("cityPage.population")}: {formattedPopulation}</p>
           <div className="mt-20 flex flex-col items-center justify-center">
             <h2 className="text-3xl font-semibold">{t("cityPage.rating")}</h2>
-            <p className="text-3xl font-semibold my-5">8/10</p>
+            <p className="text-3xl font-semibold my-5">{formattedRating}/10</p>
           </div>
         </div>
       </div>

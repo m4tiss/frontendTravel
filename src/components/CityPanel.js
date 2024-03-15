@@ -1,6 +1,6 @@
 import React from "react";
 import ReactCountryFlag from "react-country-flag";
-import italySlider from '../images/citiesImages/Warszawa.jpg';
+import italySlider from '../images/citiesImages/LosAngeles.jpg';
 import {Link} from 'react-router-dom';
  
 const CityPanel = (props) => {

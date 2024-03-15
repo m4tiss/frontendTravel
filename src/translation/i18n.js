@@ -36,7 +36,9 @@ const resources = {
         country: "Kraj",
         continent: "Kontynent",
         rating: "Ocena",
-        userReviews: "Opinie użytkowników"
+        userReviews: "Opinie użytkowników",
+        addReview: "Dodaj opinie",
+        addToFavorites: "Dodaj do ulubionych"
       },
       login:{
         login: "Logowanie",
@@ -57,7 +59,18 @@ const resources = {
         page: "Strona"
 
       },
-      favouritesCities:"Ulubione miasta"
+      favouritesCities:"Ulubione miasta",
+      admin:{
+        addCountry: "Dodaj kraj",
+        editCountry: "Edytuj kraj",
+        addCity: "Dodaj miasto",
+        editCity: "Edytuj miasto",
+        removeReview: "Usuń opinie",
+        stats1: "Liczba użytkowników na poratlu:",
+        stats2: "Miasto z najwyższą oceną:",
+        stats3: "Średnia liczba opini na użytkownika:",
+        stats4:"Najaktywniejszy użytkownik:"
+      }
     },
   },
   en: {
@@ -92,7 +105,9 @@ const resources = {
         country: "Country",
         continent: "Continent",
         rating: "Rating",
-        userReviews: "User reviews"
+        userReviews: "User reviews",
+        addReview: "Add review",
+        addToFavorites: "Add to favorites"
       },
       login:{
         login: "Login",
@@ -113,7 +128,18 @@ const resources = {
         page: "Page"
         
       },
-      favouritesCities:"Favourites cities"
+      favouritesCities:"Favourites cities",
+      admin:{
+        addCountry: "Add country",
+        editCountry: "Edit country",
+        addCity: "Add city",
+        editCity: "Edit city",
+        removeReview: "Remove review",
+        stats1: "Number of users on the portal:",
+        stats2: "City with the highest rating:",
+        stats3: "Average number of reviews per user:",
+        stats4: "Most active user:"
+      }
     },
   },
 };

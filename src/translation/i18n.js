@@ -70,6 +70,18 @@ const resources = {
         stats2: "Miasto z najwyższą oceną:",
         stats3: "Średnia liczba opini na użytkownika:",
         stats4:"Najaktywniejszy użytkownik:"
+      },
+      modals:{
+        addReview: "Dodaj",
+        title: "Tytuł",
+        description: "Opis",
+        choosenFile:"Wybierz plik",
+        selectedFile:"Wybrany plik",
+        noFile: "Nie wybrano pliku",
+        cancel: "Anuluj",
+        addCity: "Dodaj miasto",
+        name: "Nazwa",
+        population: "Liczba ludności"
       }
     },
   },
@@ -139,6 +151,18 @@ const resources = {
         stats2: "City with the highest rating:",
         stats3: "Average number of reviews per user:",
         stats4: "Most active user:"
+      },
+      modals:{
+        addReview: "Add review",
+        title: "Title",
+        description: "Description",
+        choosenFile:"Choosen file",
+        selectedFile:"Selected file",
+        noFile: "No file selected",
+        cancel: "Cancel",
+        addCity: "Add city",
+        name: "Name",
+        population: "Population"
       }
     },
   },

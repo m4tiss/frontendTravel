@@ -3,7 +3,7 @@ import "react-slideshow-image/dist/styles.css";
 import { useTranslation } from "react-i18next";
 import axios from "../config/axios";
 
-const NewReviewModal = (props) => {
+const AddCountryModal = (props) => {
   const { t } = useTranslation();
 
   const [isUpload, setIsUpload] = useState(false);
@@ -47,7 +47,7 @@ const NewReviewModal = (props) => {
     <div class=" bg-white w-8/12 border-2 border-blue-600 rounded-xl flex flex-col">
       <div className="flex flex-col items-center my-10">
         <h2 className="text-center text-2xl md:mt-10 md:mb-5 font-semibold md:text-4xl">
-          {t('modals.addReview')} ✎
+          {t('modals.addReview')} ✎ (addCountry)
         </h2>
         <input
           className="border-2 p-5 border-yellow-500 outline-none my-5 text-2xl shadow-2xl h-16 w-1/2 md:my-10"
@@ -92,4 +92,4 @@ const NewReviewModal = (props) => {
   );
 };
 
-export default NewReviewModal;
+export default AddCountryModal;

@@ -14,7 +14,6 @@ const AddCityModal = (props) => {
     name: "",
     cityImage: "",
     description: "",
-    rating: 0.0,
     population: null
   });
 
@@ -38,30 +37,39 @@ const AddCityModal = (props) => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("image", data.cityImage);
+      formData.append("path", 'citiesImages/');
 
-    const cityData = {
-      countryId: data.countryId,
-      name: data.name,
-      cityImage: data.cityImage ? data.cityImage.name : null,
-      description: data.description,
-      raiting: data.rating,
-      population: data.population,
-    };
-  
-    console.log(cityData.population);
-  
-    axios
-      .post("/addCity", cityData, {
-        
+      const imageResponse = await axios.post("/images", formData, {
         headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => {
-        props.onClose();
-      })
-      .catch((err) => console.log(err));
+          "Content-Type": "multipart/form-data"
+        }
+      });
+      console.log("Zdjęcie");
+
+      const cityData = {
+        countryId: data.countryId,
+        name: data.name,
+        cityImage: data.cityImage.name,
+        description: data.description,
+        rating: 0.0,
+        population: data.population
+      };
+
+      await axios.post("/addCity", cityData, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+      console.log("dane")
+
+      props.onClose();
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
 
@@ -73,7 +81,7 @@ const AddCityModal = (props) => {
         </h2>
 
         <select 
-        value={1}
+        defaultValue={1}
         className="block w-80 bg-white border border-yellow-500 p-3 rounded-full shadow-sm focus:outline-non"
         onChange={e=>setData({...data,countryId: e.target.value})}>
             {countries.map((country) => (

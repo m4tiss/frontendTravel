@@ -50,19 +50,19 @@ const AccountAdminPage = () => {
       <div className="w-full xl:w-8/12 flex flex-col">
         <div className="xl:flex">
           <div className="w-full xl:w-96 flex flex-col items-center gap-10 my-20 xl:my-0">
-            <button onClick={() => toggleModal('addCountry')} className="bg-green-500 w-40 h-20 rounded-full shadow-2xl text-white">
+            <button onClick={() => toggleModal('addCountry')} className="bg-green-500 hover:bg-green-600 w-40 h-20 rounded-full shadow-2xl text-white">
               {t("admin.addCountry")}
             </button>
-            <button onClick={() => toggleModal('editCountry')} className="bg-blue-400 w-40 h-20 rounded-full shadow-2xl text-white">
+            <button onClick={() => toggleModal('editCountry')} className="bg-blue-400 hover:bg-blue-600 w-40 h-20 rounded-full shadow-2xl text-white">
               {t("admin.editCountry")}
             </button>
-            <button onClick={() => toggleModal('addCity')} className="bg-purple-500 w-40 h-20 rounded-full shadow-2xl text-white">
+            <button onClick={() => toggleModal('addCity')} className="bg-purple-500 hover:bg-purple-600 w-40 h-20 rounded-full shadow-2xl text-white">
               {t("admin.addCity")}
             </button>
-            <button onClick={() => toggleModal('editCity')} className="bg-yellow-500 w-40 h-20 rounded-full shadow-2xl text-white">
+            <button onClick={() => toggleModal('editCity')} className="bg-yellow-500 hover:bg-yellow-600 w-40 h-20 rounded-full shadow-2xl text-white">
               {t("admin.editCity")}
             </button>
-            <button onClick={() => toggleModal('removeReview')} className="bg-red-500 w-40 h-20 rounded-full shadow-2xl text-white">
+            <button onClick={() => toggleModal('removeReview')} className="bg-red-500 hover:bg-red-600 w-40 h-20 rounded-full shadow-2xl text-white">
               {t("admin.removeReview")}
             </button>
           </div>

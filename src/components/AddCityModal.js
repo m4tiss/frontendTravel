@@ -8,7 +8,7 @@ const AddCityModal = (props) => {
 
   const [isUpload, setIsUpload] = useState(false);
   const [selectedFileName, setSelectedFileName] = useState(`${t('modals.noFile')}`);
-  const [countries,seCountries] = useState([])
+  const [countries,setCountries] = useState([])
   const [data, setData] = useState({
     countryId: 1,
     name: "",
@@ -21,7 +21,7 @@ const AddCityModal = (props) => {
   useEffect(() => {
     axios.get("/getAllCountries").then((res) => {
       const uploadedCountries = res.data;
-      seCountries(uploadedCountries);
+      setCountries(uploadedCountries);
     });
   }, []);
 

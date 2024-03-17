@@ -83,7 +83,9 @@ const resources = {
         name: "Nazwa",
         population: "Liczba ludności",
         editCity: "Edytuj miasto",
-        listOfCities: "Lista miast"
+        listOfCities: "Lista miast",
+        addCountry: "Dodaj kraj",
+        flag:"Flaga"
       }
     },
   },
@@ -166,7 +168,9 @@ const resources = {
         name: "Name",
         population: "Population",
         editCity: "Edit city",
-        listOfCities: "Lista miast"
+        listOfCities: "List of cities",
+        addCountry: "Add country",
+        flag:"Flag"
       }
     },
   },

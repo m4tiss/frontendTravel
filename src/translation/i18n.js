@@ -81,7 +81,9 @@ const resources = {
         cancel: "Anuluj",
         addCity: "Dodaj miasto",
         name: "Nazwa",
-        population: "Liczba ludności"
+        population: "Liczba ludności",
+        editCity: "Edytuj miasto",
+        listOfCities: "Lista miast"
       }
     },
   },
@@ -162,7 +164,9 @@ const resources = {
         cancel: "Cancel",
         addCity: "Add city",
         name: "Name",
-        population: "Population"
+        population: "Population",
+        editCity: "Edit city",
+        listOfCities: "Lista miast"
       }
     },
   },

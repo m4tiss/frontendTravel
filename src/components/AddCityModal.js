@@ -130,7 +130,7 @@ const AddCityModal = (props) => {
         <div className="flex flex-col md:flex-row  w-full md:justify-evenly items-center">
           <button 
           onClick={() => handleSubmit()}
-          className="bg-yellow-500 my-2 md:my-0 h-12 w-24 md:w-40 md:h-20 rounded-full hover:bg-yellow-600 shadow-2xl text-white">
+          className="bg-purple-500 my-2 md:my-0 h-12 w-24 md:w-40 md:h-20 rounded-full hover:bg-purple-600 shadow-2xl text-white">
             {t('modals.addCity')}
           </button>
           <button

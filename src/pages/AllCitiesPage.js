@@ -7,6 +7,10 @@ import axios from "../config/axios";
 const AllCitiesPanel = () => {
   const { t, i18n } = useTranslation();
   const [continents, setContinents] = useState([]);
+  const [countries, setCountries] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [filteredCities, setFilteredCities] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     axios.get("/getAllContinents").then((res) => {
@@ -15,13 +19,45 @@ const AllCitiesPanel = () => {
     });
   }, []);
 
+  useEffect(() => {
+    axios.get("/getAllCountries").then((res) => {
+      const uploadedCountries = res.data;
+      setCountries(uploadedCountries);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get("/getAllCities").then((res) => {
+      const uploadedCities = res.data;
+      setCities(uploadedCities);
+      setFilteredCities(uploadedCities);
+    });
+  }, []);
+
+  const handleSearch = (event) => {
+    const value = event.target.value;
+    if (value.trim() === "") {
+      setFilteredCities(cities);
+      setSearchQuery("");
+    } else {
+      const filtered = cities.filter((city) =>
+          city.name.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredCities(filtered);
+      setSearchQuery(value);
+    }
+  };
+
+  
+
   return (
     <div className="w-full  min-h-full md:flex">
-      <div className="w-full bg-yellow-300 flex flex-col items-center md:w-96">
+      <div className="w-full bg-yellow-300 flex flex-col items-center md:w-72">
         <div className="my-10">
           <input
-            className=" w-64 h-20 text-xl px-8 outline-none rounded-full text-black shadow-xl border border-gray-300"
+            className=" w-64 mx-5 h-20 text-xl px-8 outline-none rounded-full text-black shadow-xl border border-gray-300"
             placeholder={t("allCities.search") + "  🔍"}
+            onChange={handleSearch}
           />
         </div>
         <h2 className="font-semibold text-2xl">{t("allCities.filter")}</h2>
@@ -35,7 +71,7 @@ const AllCitiesPanel = () => {
                 className="h-4 w-4"
                 type="checkbox"
                 value={continent.name}
-              />{" "}
+              />
               {continent.name}
             </label>
           ))}
@@ -45,11 +81,9 @@ const AllCitiesPanel = () => {
             {t("allCities.country")}
           </h2>
           <select className="block w-full bg-white border border-gray-300 p-3 rounded-full shadow-sm focus:outline-none focus:border-blue-500">
-            <option value="1">Polska</option>
-            <option value="2">Niemcy</option>
-            <option value="3">Francja</option>
-            <option value="4">Włochy</option>
-            <option value="5">Hiszpania</option>
+          {countries.map((country) => (
+             <option key={country.countryId} value={country.countryId}>{country.name}</option>
+          ))}
           </select>
         </div>
 
@@ -62,7 +96,6 @@ const AllCitiesPanel = () => {
             <option value="2">Ocena malejąco</option>
             <option value="3">A-Z</option>
             <option value="4">Z-A</option>
-            <option value="5">Hiszpania</option>
           </select>
         </div>
         <div className="my-5 w-56">
@@ -73,15 +106,13 @@ const AllCitiesPanel = () => {
       </div>
       <div className="flex-grow flex justify-center my-10">
         <div className="w-10/12 flex flex-col items-center">
-          <h2 className="text-black font-semibold text-xl ">
+          <h2 className="text-black text-center font-semibold text-xl ">
             {t("allCities.upText")}
           </h2>
           <div className="min-h-96 flex gap-10  flex-wrap justify-center items-start my-20">
-            {/* <CityPanel name="Warszawa" /> */}
-            {/* <CityPanel name="Warszawa" /> */}
-            {/* <CityPanel name="Warszawa" /> */}
-            {/* <CityPanel name="Warszawa" /> */}
-            {/* <CityPanel name="Warszawa" /> */}
+          {filteredCities.map((city) => (
+            <CityPanel key={city.cityId} name={city.name} cityImage={city.cityImage} flagImage={city.country.flagImage} cityId={city.cityId}/>
+          ))}
           </div>
           <div>1/20 {t("allCities.page")}</div>
         </div>

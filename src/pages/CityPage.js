@@ -21,9 +21,6 @@ const CityPage = () => {
     });
   }, []);
 
-  const imagePath = city.cityImage
-    ? require(`../images/citiesImages/${city.cityImage}`)
-    : "";
   const continentName =
     city.country && city.country.continent && city.country.continent.name;
   const countryName = city.country && city.country.name;
@@ -49,7 +46,7 @@ const CityPage = () => {
         <div className="relative w-[300px] h-[200px] md:w-[450px] md:h-[250px] xl:w-[900px] xl:h-[500px] rounded-xl shadow-2xl mb-10 md:mb-0 overflow-hidden">
           <img
             className="w-full h-full object-cover rounded-xl"
-            src={imagePath}
+            src={`${process.env.REACT_APP_IMAGES_URL}citiesImages/${city.cityImage}`}
             alt="Warszawa"
           />
           <div className="overflow-y-auto lg:overflow-y-hidden absolute inset-0 flex justify-center items-center bg-black opacity-0 hover:opacity-80 transition-opacity duration-300 rounded-xl">

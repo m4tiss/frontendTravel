@@ -1,9 +1,7 @@
 import React from "react";
-import ReactCountryFlag from "react-country-flag";
 import userImgae from "../images/UserImage.png";
 import yellowStarImage from "../images/StarImage.jpg";
 import grayStarImage from "../images/GrayStarImage.jpg";
-import opinionImage from '../images/opinionImages/Warszawa1.jpg'
 import { Link } from "react-router-dom";
 
 const OpinionPanel = () => {
@@ -36,7 +34,7 @@ const OpinionPanel = () => {
         </div>
       </div>
       <div className="w-10/12 my-5 flex flex-col gap-5 justify-center items-center xl:flex-row">
-      <img className="md:w-[400px] md:h-[300px] rounded-3xl" src={opinionImage}></img>
+      <img className="md:w-[400px] md:h-[300px] rounded-3xl" src={`${process.env.REACT_APP_IMAGES_URL}opinionsImages/Warszawa1.jpg`}></img>
         <p  className="text-center">
         Warszawa, stolica Polski, to dynamiczne miasto o bogatej historii i
         kulturze, które stale ewoluuje, łącząc tradycję z nowoczesnością. Znana

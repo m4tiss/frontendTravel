@@ -6,12 +6,10 @@ import axios from "../config/axios";
 
 const CityPanel = (props) => {
 
-  const imagePath = require(`../images/citiesImages/${props.cityImage}`);
-
   return (
     <Link className="h-fit" to={`/CityPage/${props.cityId}`}>
     <div className="w-80 h-72 border-2 border-yellow-400 rounded-3xl flex py-10 md:w-96 hover:cursor-pointer hover:shadow-xl hover:shadow-gray-500" 
-    style={{backgroundImage: `url(${imagePath})`,backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    style={{backgroundImage:`url(${process.env.REACT_APP_IMAGES_URL}citiesImages/${props.cityImage})`,backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <h2 className="text-white text-2xl px-8 font-semibold">{props.name}</h2>
         <ReactCountryFlag
                   countryCode={props.flagImage}

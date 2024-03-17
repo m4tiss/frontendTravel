@@ -4,7 +4,7 @@ import ReactCountryFlag from "react-country-flag";
 import Modal from "react-modal";
 import OpinionPanel from "../components/OpinionPanel";
 import NewReviewModal from "../components/NewReviewModal";
-import ReactStars from 'react-stars'
+import ReactStars from "react-stars";
 import { useTranslation } from "react-i18next";
 import axios from "../config/axios";
 
@@ -47,7 +47,7 @@ const CityPage = () => {
           <img
             className="w-full h-full object-cover rounded-xl"
             src={`${process.env.REACT_APP_IMAGES_URL}citiesImages/${city.cityImage}`}
-            alt="Warszawa"
+            alt={city.name}
           />
           <div className="overflow-y-auto lg:overflow-y-hidden absolute inset-0 flex justify-center items-center bg-black opacity-0 hover:opacity-80 transition-opacity duration-300 rounded-xl">
             <p className="flex justify-center flex-wrap items-center p-5 h-full text-white opacity-0 hover:opacity-100 duration-700 ease-in-out text-center transform translate-y-20 hover:translate-y-0">
@@ -88,12 +88,13 @@ const CityPage = () => {
               <p className=" text-xl font-semibold mt-5">/5</p>
             </div>
             <div className="flex">
-            <ReactStars
-                  count={5}
-                  size={50}
-                  value={formattedRating}
-                  edit={false}
-                  color2={'#ffd700'} />
+              <ReactStars
+                count={5}
+                size={50}
+                value={formattedRating}
+                edit={false}
+                color2={"#ffd700"}
+              />
             </div>
           </div>
         </div>

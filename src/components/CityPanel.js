@@ -19,7 +19,7 @@ const CityPanel = (props) => {
                     height: "2em",
                   }}
                   title="PL"
-                />
+                />            
     </div>
     </Link>
   );

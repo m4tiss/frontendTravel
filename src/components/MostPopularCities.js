@@ -28,9 +28,7 @@ const MostPopularCities = () => {
         <div className="flex flex-wrap gap-10 w-10/12 justify-center items-center">
         {mostPopular.map((city) => (
             <CityPanel name={city.name} cityImage={city.cityImage} flagImage={city.country.flagImage} cityId={city.cityId}/>
-          ))}
-
-            
+          ))} 
         </div>
     </div>
   );

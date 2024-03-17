@@ -11,6 +11,7 @@ const AllCitiesPanel = () => {
   const [cities, setCities] = useState([]);
   const [filteredCities, setFilteredCities] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortOption, setSortOption] = useState("1");
 
   useEffect(() => {
     axios.get("/getAllContinents").then((res) => {
@@ -31,7 +32,7 @@ const AllCitiesPanel = () => {
       const uploadedCities = res.data;
       setCities(uploadedCities);
       setFilteredCities(uploadedCities);
-    });
+    })
   }, []);
 
   const handleSearch = (event) => {
@@ -46,6 +47,21 @@ const AllCitiesPanel = () => {
       setFilteredCities(filtered);
       setSearchQuery(value);
     }
+  };
+
+  const handleSort = () => {
+    let sortedCities = [...cities];
+    if (sortOption === "1") {
+      sortedCities.sort((a, b) => a.rating - b.rating);
+    } else if (sortOption === "2") {
+      sortedCities.sort((a, b) => b.rating - a.rating);
+    } else if (sortOption === "3") {
+      sortedCities.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortOption === "4") {
+      sortedCities.sort((a, b) => b.name.localeCompare(a.name));
+    }
+    setFilteredCities(sortedCities);
+    setSearchQuery("");
   };
 
   
@@ -91,7 +107,10 @@ const AllCitiesPanel = () => {
           <h2 className="font-semibold text-2xl my-3 ">
             {t("allCities.sort")}
           </h2>
-          <select className="block w-full bg-white border border-gray-300 p-3 rounded-full shadow-sm focus:outline-none focus:border-blue-500">
+          <select 
+           className="block w-full bg-white border border-gray-300 p-3 rounded-full shadow-sm focus:outline-none focus:border-blue-500"
+           onChange={(event) => setSortOption(event.target.value)}
+           >
             <option value="1">Ocena rosnąco</option>
             <option value="2">Ocena malejąco</option>
             <option value="3">A-Z</option>
@@ -99,7 +118,7 @@ const AllCitiesPanel = () => {
           </select>
         </div>
         <div className="my-5 w-56">
-          <button className="bg-blue-700 text-white w-full h-16 text-3xl rounded-full">
+          <button onClick={handleSort} className="bg-blue-700 text-white w-full h-16 text-3xl rounded-full">
             {t("allCities.sort")}
           </button>
         </div>

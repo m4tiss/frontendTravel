@@ -5,6 +5,9 @@ import axios from "../config/axios";
 
 
 const AllCitiesPanel = () => {
+
+  const ITEMS_PER_PAGE = 6;
+
   const { t, i18n } = useTranslation();
   const [continents, setContinents] = useState([]);
   const [countries, setCountries] = useState([]);
@@ -12,6 +15,7 @@ const AllCitiesPanel = () => {
   const [filteredCities, setFilteredCities] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState("1");
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     axios.get("/getAllContinents").then((res) => {
@@ -62,6 +66,40 @@ const AllCitiesPanel = () => {
     }
     setFilteredCities(sortedCities);
     setSearchQuery("");
+  };
+
+
+
+  const renderCities = () => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    return filteredCities.slice(startIndex, endIndex).map((city) => (
+      <CityPanel
+        key={city.cityId}
+        name={city.name}
+        cityImage={city.cityImage}
+        flagImage={city.country.flagImage}
+        cityId={city.cityId}
+      />
+    ));
+  };
+
+  
+  const renderPaginationButtons = () => {
+    const totalPages = Math.ceil(filteredCities.length / ITEMS_PER_PAGE);
+    const paginationButtons = [];
+    for (let i = 1; i <= totalPages; i++) {
+      paginationButtons.push(
+        <button
+          key={i}
+          onClick={() => setCurrentPage(i)}
+          className={`rounded-full mx-1 px-3 py-1 border ${currentPage === i ? 'bg-blue-500 text-white' : 'bg-white text-black'}`}
+        >
+          {i}
+        </button>
+      );
+    }
+    return paginationButtons;
   };
 
   
@@ -129,11 +167,9 @@ const AllCitiesPanel = () => {
             {t("allCities.upText")}
           </h2>
           <div className="min-h-96 flex gap-10  flex-wrap justify-center items-start my-20">
-          {filteredCities.map((city) => (
-            <CityPanel key={city.cityId} name={city.name} cityImage={city.cityImage} flagImage={city.country.flagImage} cityId={city.cityId}/>
-          ))}
+          {renderCities()}
           </div>
-          <div>1/20 {t("allCities.page")}</div>
+          <div>{renderPaginationButtons()}</div>
         </div>
       </div>
     </div>

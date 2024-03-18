@@ -86,8 +86,9 @@ useEffect(() => {
 
   Promise.all(axiosRequests).then((responses) => {
     const allCities = responses.flat();
-    setCities(allCities);
-    setFilteredCities(allCities);
+    const nonEmptyCities = allCities.filter(city => city !== "" && city !== undefined);
+    setCities(nonEmptyCities);
+    setFilteredCities(nonEmptyCities);
   });
 }, [selectedContinents]);
 

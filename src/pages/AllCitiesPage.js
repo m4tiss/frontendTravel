@@ -16,6 +16,9 @@ const AllCitiesPanel = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState("1");
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedContinents, setSelectedContinents] = useState(["Europa"]);
+  const [selectedCountry, setSelectedCountry] = useState(["all"]);
+
 
   useEffect(() => {
     axios.get("/getAllContinents").then((res) => {
@@ -25,18 +28,10 @@ const AllCitiesPanel = () => {
   }, []);
 
   useEffect(() => {
-    axios.get("/getAllCountries").then((res) => {
+    axios.get(`/getCountriesByContinent/${selectedContinents}`).then((res) => {
       const uploadedCountries = res.data;
       setCountries(uploadedCountries);
     });
-  }, []);
-
-  useEffect(() => {
-    axios.get("/getAllCities").then((res) => {
-      const uploadedCities = res.data;
-      setCities(uploadedCities);
-      setFilteredCities(uploadedCities);
-    })
   }, []);
 
   const handleSearch = (event) => {
@@ -69,8 +64,39 @@ const AllCitiesPanel = () => {
   };
 
 
+  const handleContinent = (continent) => {
+    const updatedSelectedContinents = [...selectedContinents];
+    if (updatedSelectedContinents.includes(continent)) {
+        const index = updatedSelectedContinents.indexOf(continent);
+        updatedSelectedContinents.splice(index, 1);
+    } else {
+        updatedSelectedContinents.push(continent);
+    }
+
+    setSelectedContinents(updatedSelectedContinents);
+};
+
+useEffect(() => {
+  setCities([]);
+  setFilteredCities([]);
+  const uniqueContinents = [...new Set(selectedContinents)];
+  const axiosRequests = uniqueContinents.map(selectedContinent => {
+    return axios.get(`/getCitiesByContinent/${selectedContinent}`).then((res) => res.data);
+  });
+
+  Promise.all(axiosRequests).then((responses) => {
+    const allCities = responses.flat();
+    setCities(allCities);
+    setFilteredCities(allCities);
+  });
+}, [selectedContinents]);
+
+
+
+
 
   const renderCities = () => {
+    console.log(filteredCities)
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
     return filteredCities.slice(startIndex, endIndex).map((city) => (
@@ -78,7 +104,7 @@ const AllCitiesPanel = () => {
         key={city.cityId}
         name={city.name}
         cityImage={city.cityImage}
-        flagImage={city.country.flagImage}
+        flagImage={city.country ? city.country.flagImage : null}
         cityId={city.cityId}
       />
     ));
@@ -116,7 +142,7 @@ const AllCitiesPanel = () => {
         </div>
         <h2 className="font-semibold text-2xl">{t("allCities.filter")}</h2>
         <div className="my-5 w-56">
-          {continents.map((continent) => (
+          {continents.map((continent, index) => (
             <label
               key={continent.continentId}
               className="text-lg flex justify-start items-center gap-3"
@@ -125,6 +151,8 @@ const AllCitiesPanel = () => {
                 className="h-4 w-4"
                 type="checkbox"
                 value={continent.name}
+                defaultChecked={index === 0}
+                onChange={()=>handleContinent(continent.name)}
               />
               {continent.name}
             </label>
@@ -135,6 +163,7 @@ const AllCitiesPanel = () => {
             {t("allCities.country")}
           </h2>
           <select className="block w-full bg-white border border-gray-300 p-3 rounded-full shadow-sm focus:outline-none focus:border-blue-500">
+          <option key={0} value="all">Wszystkie</option>
           {countries.map((country) => (
              <option key={country.countryId} value={country.countryId}>{country.name}</option>
           ))}

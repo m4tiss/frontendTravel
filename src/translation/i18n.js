@@ -56,7 +56,8 @@ const resources = {
         continent: "Kontynent",
         sort: "Sortuj",
         upText: "Zaplanuj swoje podróże, odkrywaj nowe miejsca, dziel się swoimi wrażeniami - podróżuj, zwiedzaj, oceniaj, i kreuj niezapomniane wspomnienia!",
-        page: "Strona"
+        page: "Strona",
+        all: "Wszystkie"
 
       },
       favouritesCities:"Ulubione miasta",
@@ -142,7 +143,8 @@ const resources = {
         continent: "Continent",
         sort: "Sort",
         upText: "Plan your trips, discover new places, share your experiences - travel, explore, rate, and create unforgettable memories!",
-        page: "Page"
+        page: "Page",
+        all: "All"
         
       },
       favouritesCities:"Favourites cities",

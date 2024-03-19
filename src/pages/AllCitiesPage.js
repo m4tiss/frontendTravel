@@ -17,6 +17,7 @@ const AllCitiesPanel = () => {
   const [sortOption, setSortOption] = useState("1");
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedContinents, setSelectedContinents] = useState(["Europa"]);
+
   const [selectedCountry, setSelectedCountry] = useState(["all"]);
 
 
@@ -49,7 +50,16 @@ const AllCitiesPanel = () => {
   };
 
   const handleSort = () => {
-    let sortedCities = [...cities];
+    let sortedCities;
+    if(selectedCountry != "all"){
+      sortedCities = [...filteredCities];
+    }
+    else{
+      if(selectedCountry != "all"){
+        let sortedCities = [...cities];
+      }
+    }
+    
     if (sortOption === "1") {
       sortedCities.sort((a, b) => a.rating - b.rating);
     } else if (sortOption === "2") {
@@ -77,6 +87,21 @@ const AllCitiesPanel = () => {
 };
 
 useEffect(() => {
+  setCountries([]);
+  const axiosRequests = selectedContinents.map(selectedContinent => {
+    return axios.get(`/getCountriesByContinent/${selectedContinent}`).then((res) => res.data);
+  });
+
+  Promise.all(axiosRequests).then((responses) => {
+    const allCountries = responses.flat();
+    const nonEmptyCountries = allCountries.filter(country => country !== "" && country !== undefined);
+    setCountries(nonEmptyCountries);
+  });
+}, [selectedContinents]);
+
+
+
+useEffect(() => {
   setCities([]);
   setFilteredCities([]);
   const uniqueContinents = [...new Set(selectedContinents)];
@@ -91,6 +116,22 @@ useEffect(() => {
     setFilteredCities(nonEmptyCities);
   });
 }, [selectedContinents]);
+
+
+ const handleCountry = (event) => {
+   const selectedCountryValue = event.target.value;
+   setSelectedCountry(selectedCountryValue);
+ };
+
+
+ useEffect(() => {
+  if (selectedCountry === "all") {
+    setFilteredCities(cities);
+  } else {
+    const filtered = cities.filter(city => city.country.name === selectedCountry);
+    setFilteredCities(filtered);
+  }
+}, [selectedCountry]);
 
 
 
@@ -163,10 +204,17 @@ useEffect(() => {
           <h2 className="font-semibold text-2xl my-3 ">
             {t("allCities.country")}
           </h2>
-          <select className="block w-full bg-white border border-gray-300 p-3 rounded-full shadow-sm focus:outline-none focus:border-blue-500">
+          <select className="block w-full bg-white border border-gray-300 p-3 rounded-full shadow-sm focus:outline-none focus:border-blue-500"
+          onChange={handleCountry}
+          >
           <option key={0} value="all">Wszystkie</option>
           {countries.map((country) => (
-             <option key={country.countryId} value={country.countryId}>{country.name}</option>
+             <option 
+             key={country.countryId} 
+             value={country.name}
+             >{country.name}
+             </option>
+             
           ))}
           </select>
         </div>

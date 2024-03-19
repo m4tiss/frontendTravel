@@ -55,9 +55,7 @@ const AllCitiesPanel = () => {
       sortedCities = [...filteredCities];
     }
     else{
-      if(selectedCountry != "all"){
-        let sortedCities = [...cities];
-      }
+      sortedCities = [...cities];
     }
     
     if (sortOption === "1") {
@@ -207,7 +205,7 @@ useEffect(() => {
           <select className="block w-full bg-white border border-gray-300 p-3 rounded-full shadow-sm focus:outline-none focus:border-blue-500"
           onChange={handleCountry}
           >
-          <option key={0} value="all">Wszystkie</option>
+          <option key={0} value="all">{t("allCities.all")}</option>
           {countries.map((country) => (
              <option 
              key={country.countryId} 
@@ -227,10 +225,10 @@ useEffect(() => {
            className="block w-full bg-white border border-gray-300 p-3 rounded-full shadow-sm focus:outline-none focus:border-blue-500"
            onChange={(event) => setSortOption(event.target.value)}
            >
-            <option value="1">Ocena rosnąco</option>
-            <option value="2">Ocena malejąco</option>
-            <option value="3">A-Z</option>
-            <option value="4">Z-A</option>
+        <option value="1">{t("allCities.sortAscending")}</option>
+          <option value="2">{t("allCities.sortDescending")}</option>
+          <option value="3">{t("allCities.sortAZ")}</option>
+          <option value="4">{t("allCities.sortZA")}</option>
           </select>
         </div>
         <div className="my-5 w-56">

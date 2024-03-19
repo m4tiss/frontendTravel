@@ -57,7 +57,11 @@ const resources = {
         sort: "Sortuj",
         upText: "Zaplanuj swoje podróże, odkrywaj nowe miejsca, dziel się swoimi wrażeniami - podróżuj, zwiedzaj, oceniaj, i kreuj niezapomniane wspomnienia!",
         page: "Strona",
-        all: "Wszystkie"
+        all: "Wszystkie",
+        sortAscending: "Ocena rosnąco",
+        sortDescending: "Ocena malejąco",
+        sortAZ: "A-Z",
+        sortZA: "Z-A"
 
       },
       favouritesCities:"Ulubione miasta",
@@ -144,7 +148,11 @@ const resources = {
         sort: "Sort",
         upText: "Plan your trips, discover new places, share your experiences - travel, explore, rate, and create unforgettable memories!",
         page: "Page",
-        all: "All"
+        all: "All",
+        sortAscending: "Ascending",
+        sortDescending: "Descending",
+        sortAZ: "A-Z",
+        sortZA: "Z-A"
         
       },
       favouritesCities:"Favourites cities",

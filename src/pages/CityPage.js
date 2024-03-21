@@ -14,7 +14,7 @@ const CityPage = () => {
   const [city, setCity] = useState({});
 
   useEffect(() => {
-    axios.get(`/getCity/${cityId}`).then((res) => {
+    axios.get(`/public/getCity/${cityId}`).then((res) => {
       const uploadedCity = res.data;
       console.log(uploadedCity);
       setCity(uploadedCity);

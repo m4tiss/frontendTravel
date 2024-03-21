@@ -22,14 +22,14 @@ const AllCitiesPanel = () => {
 
 
   useEffect(() => {
-    axios.get("/getAllContinents").then((res) => {
+    axios.get("/public/getAllContinents").then((res) => {
       const uploadedContinents = res.data;
       setContinents(uploadedContinents);
     });
   }, []);
 
   useEffect(() => {
-    axios.get(`/getCountriesByContinent/${selectedContinents}`).then((res) => {
+    axios.get(`/public/getCountriesByContinent/${selectedContinents}`).then((res) => {
       const uploadedCountries = res.data;
       setCountries(uploadedCountries);
     });
@@ -87,7 +87,7 @@ const AllCitiesPanel = () => {
 useEffect(() => {
   setCountries([]);
   const axiosRequests = selectedContinents.map(selectedContinent => {
-    return axios.get(`/getCountriesByContinent/${selectedContinent}`).then((res) => res.data);
+    return axios.get(`/public/getCountriesByContinent/${selectedContinent}`).then((res) => res.data);
   });
 
   Promise.all(axiosRequests).then((responses) => {
@@ -104,7 +104,7 @@ useEffect(() => {
   setFilteredCities([]);
   const uniqueContinents = [...new Set(selectedContinents)];
   const axiosRequests = uniqueContinents.map(selectedContinent => {
-    return axios.get(`/getCitiesByContinent/${selectedContinent}`).then((res) => res.data);
+    return axios.get(`/public/getCitiesByContinent/${selectedContinent}`).then((res) => res.data);
   });
 
   Promise.all(axiosRequests).then((responses) => {

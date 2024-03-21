@@ -28,7 +28,7 @@ const LoginPage = () => {
   return (
     <div className="w-full h-full flex justify-evenly">
       <div className="hidden lg:flex justify-center">
-        <img src={`${process.env.REACT_APP_IMAGES_URL}/LoginImage.jpg`} className="h-[750px] mt-5"/>
+        <img src={`${process.env.REACT_APP_IMAGES_URL}LoginImage.jpg`} className="h-[750px] mt-5"/>
       </div>
       <div className="w-80 flex flex-col mt-32 md:w-96 ">
         <h2 className="text-blue-500 text-4xl font-semibold my-10 text-center">

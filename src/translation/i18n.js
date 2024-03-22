@@ -42,7 +42,8 @@ const resources = {
       },
       login:{
         login: "Logowanie",
-        logIn: "Zaloguj się"
+        logIn: "Zaloguj się",
+        incorrectData: "Nieprawidłowe dane"
       },
       register:{
         registartion: "Rejestracja",
@@ -133,7 +134,8 @@ const resources = {
       },
       login:{
         login: "Login",
-        logIn: "Log In"
+        logIn: "Log In",
+        incorrectData: "Inncorect data"
       },
       register:{
         registartion: "Registartion",

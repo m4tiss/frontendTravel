@@ -10,28 +10,32 @@ import AccountUserPage from "./pages/AccountUserPage";
 import AccountAdminPage from "./pages/AccountAdminPage";
 
 import "./index.css";
+import AuthProvider from "./provider/AuthProvider";
 
 
 
 function App() {
+
   return (
     <div class="h-screen w-full">
-      <BrowserRouter>
-      <NavBar />
-        <Routes>
-          <Route path="/">
-          <Route index element={<MainPage />} />
-          <Route path="Login" element={<LoginPage />} />
-          <Route path="Registration" element={<Registration />} />
-          <Route path="CityPage/:cityId" element={<CityPage/>}/>
-          <Route path="AllCities" element={<AllCitiesPanel/>}/>
-          <Route path="AccountUser" element={<AccountUserPage/>}/>
-          <Route path="AccountAdmin" element={<AccountAdminPage/>}/>
-          </Route>
-        </Routes>
-        <Footer />
-      </BrowserRouter>
- 
+      <AuthProvider>
+        <BrowserRouter>
+        <NavBar />
+          <Routes>
+            <Route path="/">
+            <Route index element={<MainPage />} />
+            <Route path="Login" element={<LoginPage />} />
+            <Route path="Registration" element={<Registration />} />
+            <Route path="CityPage/:cityId" element={<CityPage/>}/>
+            <Route path="AllCities" element={<AllCitiesPanel/>}/>
+            <Route path="AccountUser" element={<AccountUserPage/>}/>
+            <Route path="AccountAdmin" element={<AccountAdminPage/>}/>
+            </Route>
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </AuthProvider>
+      
     </div>
   );
 }

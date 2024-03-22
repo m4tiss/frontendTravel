@@ -17,7 +17,7 @@ const EditCityModal = (props) => {
   });
 
   useEffect(() => {
-    axios.get("/getAllCities").then((res) => {
+    axios.get("/public/getAllCities").then((res) => {
       const uploadedCities = res.data;
       setCities(uploadedCities);
     });
@@ -26,7 +26,7 @@ const EditCityModal = (props) => {
   const handleChoosenCity = (cityId) => {
     setShowForm(true);
     setCityId(cityId);
-    axios.get(`/getCity/${cityId}`).then((res) => {
+    axios.get(`/public/getCity/${cityId}`).then((res) => {
       const uploadedCity = res.data;
       setData({
         name: uploadedCity.name,

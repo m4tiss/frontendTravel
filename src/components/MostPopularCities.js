@@ -2,6 +2,7 @@ import {React, useState,useEffect} from "react";
 import CityPanel from './CityPanel';
 import { useTranslation } from "react-i18next";
 import axios from "../config/axios";
+import AuthProvider from "../provider/AuthProvider";
 
 
 
@@ -14,7 +15,7 @@ const MostPopularCities = () => {
   const [mostPopular, setMostPopular] = useState([]);
 
   useEffect(() => {
-    axios.get("/public/getMostPopularCities").then((res) => {
+    axios.get("/getMostPopularCities").then((res) => {
       const uploadedCities = res.data;
       console.log(uploadedCities)
       setMostPopular(uploadedCities);

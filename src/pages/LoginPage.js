@@ -1,28 +1,38 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from '../config/axios';
+import { useAuth } from '../provider/AuthProvider';
+
 
 const LoginPage = () => {
 
   const { t, i18n } = useTranslation();
 
-
-  const onLogin = () => {
+  const { addToken } = useAuth();
+  
+  
+  const onLogin = async () => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
     if (!email || !password) {
-      alert('Please provide both email and password');
+      toast.error("Wpisz dane");
       return;
     }
 
-    axios.post('/login', { email, password })
-      .then(response => {
-        console.log('Login successful');
-      })
-      .catch(error => {
-        console.error('Login failed:', error);
-      });
+    try {
+      console.log(email,password)
+      const response = await axios.post('/auth/login',{ email, password })
+      const token = response.data.token;
+      addToken(token)
+      toast.success("Udało ci się zalogować");
+      
+    } catch (error) {
+      console.error(error);
+      toast.error(t('login.incorrectData'));
+    }
   };
 
   return (
@@ -48,6 +58,7 @@ const LoginPage = () => {
           <button onClick={onLogin} className="text-xl bg-blue-400 w-96 h-10 font-semibold text-white border-2 border-blue-500 rounded-xl mx-2 hover:bg-slate-300">
           {t('login.logIn')}
           </button>
+          <ToastContainer/>
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
 import { HiMenu } from "react-icons/hi";
 import { useTranslation } from "react-i18next";
+import RegisterAndLoginButtons from "./RegisterAndLoginButtons";
 
 
 const NavBar = () => {
@@ -64,16 +65,7 @@ const NavBar = () => {
               </Link>
             </div>
             <div class="hidden md:flex">
-              <Link to="/Registration">
-                <button class="bg-white w-40 h-10 font-semibold text-blue-400  border-2 border-blue-400 rounded-md mx-2 hover:bg-slate-300">
-                {t('navbar.register')}
-                </button>
-              </Link>
-              <Link to="/Login">
-                <button class="bg-white w-40 h-10 font-semibold text-blue-400 border-2 border-blue-400 rounded-md mx-2 hover:bg-slate-300">
-                {t('navbar.logIn')}
-                </button>
-              </Link>
+                <RegisterAndLoginButtons/>
             </div>
             <div class="md:hidden" onClick={() => setNav(!nav)}>
               <HiMenu color="white" size={40} />
@@ -128,28 +120,13 @@ const NavBar = () => {
 
             <div className="flex justify-center items-center my-2">
               <Link to="/AllCities">
-                <h2 class="text-white text-xl font-semibold hover:cursor-pointer hover:text-yellow-300">
+                <h2 onClick={() => setNav(!nav)} class="text-white text-xl font-semibold hover:cursor-pointer hover:text-yellow-300">
                 {t('navbar.showAll')}
                 </h2>
               </Link>
             </div>
             <div class="flex  flex-col items-center justify-center my-10">
-              <Link to="/Registration">
-                <button
-                  onClick={() => setNav(!nav)}
-                  class="bg-white w-40 h-10 font-semibold text-blue-400  border-2 border-blue-400 rounded-md mx-2 hover:bg-slate-300 my-5"
-                >
-                  {t('navbar.register')}
-                </button>
-              </Link>
-              <Link to="/Login">
-                <button
-                  onClick={() => setNav(!nav)}
-                  class="bg-white w-40 h-10 font-semibold text-blue-400 border-2 border-blue-400 rounded-md mx-2 hover:bg-slate-300 my-5"
-                >
-                 {t('navbar.logIn')}
-                </button>
-              </Link>
+            <RegisterAndLoginButtons onClick={() => setNav(!nav)}/>
             </div>
           </div>
         </div>

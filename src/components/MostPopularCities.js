@@ -15,7 +15,7 @@ const MostPopularCities = () => {
   const [mostPopular, setMostPopular] = useState([]);
 
   useEffect(() => {
-    axios.get("/getMostPopularCities").then((res) => {
+    axios.get("/public/getMostPopularCities").then((res) => {
       const uploadedCities = res.data;
       console.log(uploadedCities)
       setMostPopular(uploadedCities);

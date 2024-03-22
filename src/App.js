@@ -1,5 +1,5 @@
 import NavBar from "./components/Navbar";
-import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import LoginPage from "./pages/LoginPage";
 import Registration from "./pages/RegistrationPage";
@@ -8,12 +8,11 @@ import Footer from "./components/Footer";
 import AllCitiesPanel from "./pages/AllCitiesPage";
 import AccountUserPage from "./pages/AccountUserPage";
 import AccountAdminPage from "./pages/AccountAdminPage";
+import AccountPage from "./pages/AccountPage";
 
 import "./index.css";
 import AuthProvider from "./provider/AuthProvider";
-import { useAuth } from './provider/AuthProvider';
-
-
+import { useAuth } from "./provider/AuthProvider";
 
 function App() {
   return (
@@ -29,10 +28,13 @@ function App() {
               <Route path="CityPage/:cityId" element={<CityPage />} />
               <Route path="AllCities" element={<AllCitiesPanel />} />
               <Route
-              path="AccountUser"
-              element={<PrivateRoute component={<AccountUserPage />} />}
-            />
-              <Route path="AccountAdmin" element={<AccountAdminPage />} />
+                path="AccountUser"
+                element={<PrivateRoute component={<AccountUserPage />} />}
+              />
+              <Route
+                path="AccountAdmin"
+                element={<PrivateRoute component={<AccountAdminPage />} />}
+              />
             </Route>
           </Routes>
           <Footer />

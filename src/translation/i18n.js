@@ -8,7 +8,8 @@ const resources = {
       navbar: {
         showAll: "Zobacz wszystkie",
         register: "Zarejestruj się",
-        logIn: "Zaloguj się"
+        logIn: "Zaloguj się",
+        logout: "Wyloguj"
       },
 
       mostPopularCities : "Najbardziej popularne miasta",
@@ -43,7 +44,7 @@ const resources = {
       login:{
         login: "Logowanie",
         logIn: "Zaloguj się",
-        incorrectData: "Nieprawidłowe dane"
+        incorrectData: "Nieprawidłowe dane",
       },
       register:{
         registartion: "Rejestracja",
@@ -101,7 +102,8 @@ const resources = {
       navbar: {
         showAll: "Show All",
         register: "Register",
-        logIn: "Log In"
+        logIn: "Log In",
+        logout: "Logout"
       },
 
       mostPopularCities : "Most popular cities",

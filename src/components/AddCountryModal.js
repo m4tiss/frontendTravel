@@ -43,7 +43,7 @@ const AddCountryModal = (props) => {
 
 
   return (
-    <div class=" bg-white w-8/12 border-2 border-blue-600 rounded-xl flex flex-col">
+    <div className=" bg-white w-8/12 border-2 border-blue-600 rounded-xl flex flex-col">
       <div className="flex flex-col items-center my-10">
         <h2 className="text-center text-2xl md:mt-10 md:mb-5 font-semibold md:text-4xl">
           {t('modals.addCountry')} ✎

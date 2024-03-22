@@ -35,6 +35,10 @@ function App() {
                 path="AccountAdmin"
                 element={<PrivateRoute component={<AccountAdminPage />} />}
               />
+               <Route
+                path="Account"
+                element={<PrivateRoute component={<AccountPage />} />}
+              />
             </Route>
           </Routes>
           <Footer />

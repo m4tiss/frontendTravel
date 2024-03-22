@@ -1,26 +1,41 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import axios from "../config/axios"
-
-
+import axios from "../config/axios";
+import { useAuth } from "../provider/AuthProvider";
 
 const AccountPage = () => {
+    const { token } = useAuth();
+    const [user, setUser] = useState(null);
 
-    const [user,setUser] = useState();
-  
     useEffect(() => {
-        axios.get("/getUser").then((res) => {
-          const user = res.data;
-          setUser(user);
-        });
-      }, []);
+        const fetchData = async () => {
+            try {
+                const response = await axios.get("/getUser", {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                const userData = response.data;
+                setUser(userData);
+            } catch (error) {
+                console.error("Błąd podczas pobierania danych użytkownika:", error);
+            }
+        };
 
-        if (user && user.role === 'ADMIN') {
+        if (token) {
+            fetchData();
+        }
+    }, [token]);
+
+    if (!token) {
+        return <Navigate to="/login" />;
+    }
+
+    if (user && user.role === 'ADMIN') {
         return <Navigate to="/AccountAdmin" />;
-      }
-      else if(user && user.role === 'USER'){
+    } else if (user && user.role === 'USER') {
         return <Navigate to="/AccountUser" />;
-      }
+    }
 
     return null;
 };

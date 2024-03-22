@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from 'react-toastify';
+import { Navigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import axios from '../config/axios';
 import { useAuth } from '../provider/AuthProvider';
@@ -10,7 +11,9 @@ const LoginPage = () => {
 
   const { t, i18n } = useTranslation();
 
-  const { addToken } = useAuth();
+  const { addToken, isAuth } = useAuth();
+
+  const [toNavigate,setToNavigate] = useState(false)
   
   
   const onLogin = async () => {
@@ -26,7 +29,8 @@ const LoginPage = () => {
       console.log(email,password)
       const response = await axios.post('/auth/login',{ email, password })
       const token = response.data.token;
-      addToken(token)
+      addToken(token);
+      setToNavigate(true)
       toast.success("Udało ci się zalogować");
       
     } catch (error) {
@@ -34,6 +38,11 @@ const LoginPage = () => {
       toast.error(t('login.incorrectData'));
     }
   };
+
+
+    if (isAuth && toNavigate) {
+      return <Navigate to="/Account" />;
+    }
 
   return (
     <div className="w-full h-full flex justify-evenly">

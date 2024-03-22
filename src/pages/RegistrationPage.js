@@ -29,7 +29,7 @@ const Registration = () => {
           </Link>
         
         <div className="flex justify-center items-center m-6">
-          <button class="text-xl bg-blue-400 w-96 h-10 font-semibold text-white border-2 border-blue-500 rounded-xl mx-2 hover:bg-slate-300">
+          <button className="text-xl bg-blue-400 w-96 h-10 font-semibold text-white border-2 border-blue-500 rounded-xl mx-2 hover:bg-slate-300">
           {t('register.register')}
           </button>
         </div>

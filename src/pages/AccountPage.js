@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import axios from "../config/axios";
 import { useAuth } from "../provider/AuthProvider";
+import AccountUserPage from "../pages/AccountUserPage";
+import AccountAdminPage from "../pages/AccountAdminPage";
 
 const AccountPage = () => {
     const { token } = useAuth();
@@ -32,9 +34,9 @@ const AccountPage = () => {
     }
 
     if (user && user.role === 'ADMIN') {
-        return <Navigate to="/AccountAdmin" />;
+        return <AccountAdminPage/>;
     } else if (user && user.role === 'USER') {
-        return <Navigate to="/AccountUser" />;
+        return <AccountUserPage/>;
     }
 
     return null;

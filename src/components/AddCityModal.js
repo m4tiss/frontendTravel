@@ -19,7 +19,7 @@ const AddCityModal = (props) => {
 
 
   useEffect(() => {
-    axios.get("/getAllCountries").then((res) => {
+    axios.get("/public/getAllCountries").then((res) => {
       const uploadedCountries = res.data;
       setCountries(uploadedCountries);
     });

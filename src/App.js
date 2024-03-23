@@ -23,18 +23,14 @@ function App() {
           <Routes>
             <Route path="/">
               <Route index element={<MainPage />} />
-              <Route path="Login" element={<LoginPage />} />
-              <Route path="Registration" element={<Registration />} />
+              <Route path="Registration" element={<AuthRoute component={<Registration />} />} />
+              <Route path="Login" element={<AuthRoute component={<LoginPage />} />} />
+               <Route
+                path="Account"
+                element={<PrivateRoute component={<AccountPage />} />}
+              />
               <Route path="CityPage/:cityId" element={<CityPage />} />
               <Route path="AllCities" element={<AllCitiesPanel />} />
-              <Route
-                path="AccountUser"
-                element={<PrivateRoute component={<AccountUserPage />} />}
-              />
-              <Route
-                path="AccountAdmin"
-                element={<PrivateRoute component={<AccountAdminPage />} />}
-              />
                <Route
                 path="Account"
                 element={<PrivateRoute component={<AccountPage />} />}
@@ -53,5 +49,12 @@ function PrivateRoute({ component }) {
 
   return isAuth() ? component : <Navigate to="/login" />;
 }
+
+function AuthRoute({ component }) {
+  const { isAuth } = useAuth();
+
+  return isAuth() ?  <Navigate to="/Account" />:component ;
+}
+
 
 export default App;

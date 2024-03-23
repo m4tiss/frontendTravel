@@ -1,6 +1,7 @@
 import {React ,useState} from "react";
 import {Link} from 'react-router-dom'
 import { useTranslation } from "react-i18next";
+import { ToastContainer, toast } from 'react-toastify';
 import axios from "../config/axios";
 
 
@@ -10,13 +11,11 @@ const Registration = () => {
 
   const [isUpload, setIsUpload] = useState(false);
   const [selectedFileName, setSelectedFileName] = useState(`${t('modals.noFile')}`);
-  const [countries,setCountries] = useState([])
   const [data, setData] = useState({
-    countryId: 1,
-    name: "",
-    cityImage: "",
-    description: "",
-    population: null
+    nickname: "",
+    email: "",
+    password: "",
+    userImage: "",
   });
 
 
@@ -30,12 +29,29 @@ const Registration = () => {
       setIsUpload(false);
     }
   };
+  
+  const validateEmail = (email) => {
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  };
+
 
   const handleSubmit = async () => {
     try {
+
+      if (!data.nickname || !data.email || !data.password || !data.userImage) {
+        toast.error("Wpisz dane");
+        return;
+      }
+
+      if (!validateEmail(data.email)) {
+        toast.error("Nieprawidłowy adres email");
+        return;
+      }
+
       const formData = new FormData();
-      formData.append("image", data.cityImage);
-      formData.append("path", 'citiesImages/');
+      formData.append("image", data.userImage);
+      formData.append("path", 'usersImages/');
 
       const imageResponse = await axios.post("/images", formData, {
         headers: {
@@ -45,23 +61,32 @@ const Registration = () => {
       console.log("Zdjęcie");
 
       const cityData = {
-        countryId: data.countryId,
-        name: data.name,
-        cityImage: data.cityImage.name,
-        description: data.description,
-        rating: 0.0,
-        population: data.population
+        nickname: data.nickname,
+        email: data.email,
+        password: data.password,
+        userImage: data.userImage.name,
       };
 
-      await axios.post("/addCity", cityData, {
+      await axios.post("/auth/register", cityData, {
         headers: {
           "Content-Type": "application/json"
         }
       });
-      console.log("dane")
+
+
+      setData({
+        nickname: "",
+        email: "",
+        password: "",
+        userImage: "",
+      });
+      setIsUpload(false)
+      setSelectedFileName(`${t('modals.noFile')}`);
+
+      toast.success("Udało ci się zarejestrować");
 
     } catch (error) {
-      console.error("Error:", error);
+      toast.error("Rejestracja nie powiodła się");
     }
   };
 
@@ -70,21 +95,28 @@ const Registration = () => {
       <div className="hidden lg:flex justify-center">
         <img src={`${process.env.REACT_APP_IMAGES_URL}LoginImage.jpg`} className="h-[750px] mt-5"/>
       </div>
-      <div className="w-80 flex flex-col mt-32 md:w-96">
+      <div className="w-80 flex flex-col md:mt-32 md:w-96">
         <h2 className="text-blue-500 text-4xl font-semibold my-10 text-center">
           {t('register.registartion')}
         </h2>
         <input
           placeholder="Nickname"
           className="border-blue-500 border-solid border-l-8 p-2 text-3xl my-2 outline-none bg-slate-200"
+          value={data.nickname}
+          onChange={e=>setData({...data,nickname: e.target.value})}
         ></input>
         <input
+          type="email"
           placeholder="Email"
           className="border-blue-500 border-solid border-l-8 p-2 text-3xl my-2 outline-none bg-slate-200"
+          value={data.email}
+          onChange={e=>setData({...data,email: e.target.value})}
         ></input>
         <input
           placeholder="Password"
           className="border-blue-500 border-solid border-l-8 p-2 text-3xl my-2 outline-none bg-slate-200"
+          value={data.password}
+          onChange={e=>setData({...data,password: e.target.value})}
         ></input>
         <label
           htmlFor="fileInput"
@@ -99,7 +131,7 @@ const Registration = () => {
           className="hidden"
           onChange={(e) => {
             handleFileSelect(e);
-            setData({ ...data, cityImage: e.target.files[0] });
+            setData({ ...data, userImage: e.target.files[0] });
           }}
         />
         <div className="mb-5 text-blue-400">{selectedFileName}</div>
@@ -109,11 +141,13 @@ const Registration = () => {
           </Link>
         
         <div className="flex justify-center items-center m-6">
-          <button className="text-xl bg-blue-400 w-96 h-10 font-semibold text-white border-2 border-blue-500 rounded-xl mx-2 hover:bg-slate-300">
+          <button onClick={() => handleSubmit()} className="text-xl bg-blue-400 w-96 h-10 font-semibold text-white border-2 border-blue-500 rounded-xl mx-2 hover:bg-slate-300">
           {t('register.register')}
           </button>
         </div>
+        <ToastContainer/>
       </div>
+      
     </div>
   );
 };

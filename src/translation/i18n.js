@@ -93,7 +93,8 @@ const resources = {
         listOfCities: "Lista miast",
         addCountry: "Dodaj kraj",
         flag:"Flaga",
-        editCountry: 'Edytuj kraj'
+        editCountry: 'Edytuj kraj',
+        editUser: "Edytuj użytkownika"
       }
     },
   },
@@ -186,7 +187,9 @@ const resources = {
         listOfCities: "List of cities",
         addCountry: "Add country",
         flag:"Flag",
-        editCountry: 'Edit country'
+        editCountry: 'Edit country',
+        editUser: "Edit user"
+    
       }
     },
   },

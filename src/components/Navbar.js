@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactCountryFlag from "react-country-flag";
 import { Link } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
@@ -9,10 +9,13 @@ import UserAndLogout from "./UserAndLogout";
 import { useAuth } from '../provider/AuthProvider';
 
 
+
 const NavBar = () => {
   const [nav, setNav] = useState(true);
   const { t, i18n } = useTranslation();
   const { isAuth } = useAuth();
+ 
+
 
 
   const changeLanguage = (lng) => {

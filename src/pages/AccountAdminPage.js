@@ -13,6 +13,8 @@ const AccountAdminPage = () => {
   const { t } = useTranslation();
   const [countUsers, setCountUsers] = useState(0);
   const [mostPopularCity, setMostPopularCity] = useState({});
+  const [opinionsPerUser, setOpinionsPerUsers] = useState(0.0);
+  const [mostActiveUser, setMostActiveUser] = useState("");
 
   const [modals, setModals] = useState({
     addCountry: false,
@@ -31,10 +33,23 @@ const AccountAdminPage = () => {
   useEffect(() => {
     axios.get("/getMostPopularCity").then((res) => {
       setMostPopularCity(res.data);
+      
     });
   }, []);
 
+  useEffect(() => {
+    axios.get("/getOpinionsPerUser").then((res) => {
+      setOpinionsPerUsers(res.data.toFixed(1));
+    });
+  }, []);
  
+  
+  useEffect(() => {
+    axios.get("/getMostActiveUser").then((res) => {
+      setMostActiveUser(res.data);
+    });
+  }, []);
+  
 
   const toggleModal = (modalName) => {
     setModals({
@@ -115,13 +130,13 @@ const AccountAdminPage = () => {
               <h2 className="text-xl xl:text-3xl p-2 font-semibold">
                 {t("admin.stats3")}
               </h2>
-              <h2 className="text-xl xl:text-3xl mx-2">3.4</h2>
+              <h2 className="text-xl xl:text-3xl mx-2">{opinionsPerUser}</h2>
             </div>
             <div className="bg-gray-200 shadow-2xl w-10/12 h-28 flex justify-center items-center">
               <h2 className="text-xl xl:text-3xl p-2 font-semibold">
                 {t("admin.stats4")}
               </h2>
-              <h2 className="text-xl xl:text-3xl mx-2">Maciuś2137</h2>
+              <h2 className="text-xl xl:text-3xl mx-2">{mostActiveUser}</h2>
             </div>
           </div>
         </div>

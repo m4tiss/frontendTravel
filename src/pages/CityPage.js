@@ -16,11 +16,29 @@ const CityPage = () => {
   const [opinions, setOpinions] = useState([]);
   const [rating, setRating] = useState();
   const { isAuth } = useAuth();
+  const [favourites, setFavourites] = useState([]);
+  const [isFavourite, setIsFavourite] = useState(false);
+
+  useEffect(() => {
+    const fetchFavourites = () => {
+      axios.get("/getFavouritesByUser")
+        .then((res) => {
+          const favouritesCities = res.data;
+          setFavourites(favouritesCities);
+        })
+        .catch((error) => {
+          console.error("Error fetching favourites:", error);
+        });
+    };
+    if (isAuth()) {
+        fetchFavourites();
+    }
+  }, [isAuth]);
+  
 
   useEffect(() => {
     axios.get(`/public/getCity/${cityId}`).then((res) => {
       const uploadedCity = res.data;
-      console.log(uploadedCity);
       setCity(uploadedCity);
     });
   }, []);
@@ -58,6 +76,23 @@ const CityPage = () => {
   const onClose = () => {
     toogleModal();
   };
+
+  const handleAddToFavourites = () => {
+
+    window.location.reload()
+  };
+  const handleRemoveFromFavourites = () => {
+
+    window.location.reload();
+    
+  };
+
+  useEffect(() => {
+    const isFavourite = favourites.some((fav) => {
+      return fav.city.cityId === city.cityId;
+    });
+    setIsFavourite(isFavourite);
+  }, [favourites]);
 
   return (
     <div className="w-full min-h-full flex flex-col">
@@ -124,8 +159,8 @@ const CityPage = () => {
               </>
             ) : (
               <p className="text-red-600 text-3xl my-5">
-              {t("cityPage.noRating")}
-            </p>
+                {t("cityPage.noRating")}
+              </p>
             )}
           </div>
         </div>
@@ -142,9 +177,21 @@ const CityPage = () => {
           >
             {t("cityPage.addReview")} ✎
           </button>
-          <button className="bg-yellow-500 w-40 h-20 rounded-full hover:bg-yellow-600 shadow-2xl text-white">
-            {t("cityPage.addToFavorites")} ⭐
-          </button>
+          {isFavourite ? (
+            <button
+              onClick={handleRemoveFromFavourites}
+              className="bg-red-500 w-40 h-20 rounded-full shadow-2xl hover:bg-red-700 text-white"
+            >
+              {t("cityPage.removeFromFavourites")}
+            </button>
+          ) : (
+            <button
+              onClick={handleAddToFavourites}
+              className="bg-yellow-500 w-40 h-20 rounded-full hover:bg-yellow-600 shadow-2xl text-white"
+            >
+              {t("cityPage.addToFavorites")}⭐
+            </button>
+          )}
         </div>
       ) : null}
 

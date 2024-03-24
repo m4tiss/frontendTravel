@@ -41,7 +41,8 @@ const resources = {
         addReview: "Dodaj opinie",
         addToFavorites: "Dodaj do ulubionych",
         noReviewsAvailable: "Brak dostępnych opini",
-        noRating: "Brak oceny"
+        noRating: "Brak oceny",
+        removeFromFavourites: "Usuń z ulubionych"
       },
       login:{
         login: "Logowanie",
@@ -139,7 +140,8 @@ const resources = {
         addReview: "Add review",
         addToFavorites: "Add to favorites",
         noReviewsAvailable: "No reviews available",
-        noRating: "No rating"
+        noRating: "No rating",
+        removeFromFavourites: "Remove from favourites"
       },
       login:{
         login: "Login",

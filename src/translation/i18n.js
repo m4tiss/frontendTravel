@@ -79,7 +79,7 @@ const resources = {
         stats4:"Najaktywniejszy użytkownik:"
       },
       modals:{
-        addReview: "Dodaj",
+        addReview: "Dodaj opinie",
         title: "Tytuł",
         description: "Opis",
         choosenFile:"Wybierz plik",
@@ -94,7 +94,8 @@ const resources = {
         addCountry: "Dodaj kraj",
         flag:"Flaga",
         editCountry: 'Edytuj kraj',
-        editUser: "Edytuj użytkownika"
+        editUser: "Edytuj użytkownika",
+        rating:"Ocena"
       }
     },
   },
@@ -188,7 +189,8 @@ const resources = {
         addCountry: "Add country",
         flag:"Flag",
         editCountry: 'Edit country',
-        editUser: "Edit user"
+        editUser: "Edit user",
+        rating:"Rating"
     
       }
     },

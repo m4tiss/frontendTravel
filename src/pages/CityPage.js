@@ -7,11 +7,13 @@ import NewReviewModal from "../components/NewReviewModal";
 import ReactStars from "react-stars";
 import { useTranslation } from "react-i18next";
 import axios from "../config/axios";
+import { useAuth } from "../provider/AuthProvider";
 
 const CityPage = () => {
   const { t } = useTranslation();
   let { cityId } = useParams();
   const [city, setCity] = useState({});
+  const { isAuth } = useAuth();
 
   useEffect(() => {
     axios.get(`/public/getCity/${cityId}`).then((res) => {
@@ -103,22 +105,25 @@ const CityPage = () => {
       <h2 className="text-black text-2xl my-10 font-bold text-center justify-center items-center">
         {t("cityPage.userReviews")}✎
       </h2>
-      <div className="w-full flex justify-evenly items-center mb-10">
-        <button
-          onClick={toogleModal}
-          className="bg-blue-500 w-40 h-20 rounded-full shadow-2xl hover:bg-blue-700 text-white"
-        >
-          {t("cityPage.addReview")} ✎
-        </button>
-        <button className="bg-yellow-500 w-40 h-20 rounded-full hover:bg-yellow-600 shadow-2xl text-white">
-          {t("cityPage.addToFavorites")} ⭐
-        </button>
-      </div>
+      {isAuth() ? (
+        <div className="w-full flex justify-evenly items-center mb-10">
+          <button
+            onClick={toogleModal}
+            className="bg-blue-500 w-40 h-20 rounded-full shadow-2xl hover:bg-blue-700 text-white"
+          >
+            {t("cityPage.addReview")} ✎
+          </button>
+          <button className="bg-yellow-500 w-40 h-20 rounded-full hover:bg-yellow-600 shadow-2xl text-white">
+            {t("cityPage.addToFavorites")} ⭐
+          </button>
+        </div>
+      ) : null }
+
       <Modal
         isOpen={showModal}
         className={"fixed inset-0 flex justify-center items-center"}
       >
-        <NewReviewModal onClose={onClose} />
+        <NewReviewModal cityId={city.cityId} onClose={onClose} />
       </Modal>
       <div className="flex flex-col w-4/5 items-center mx-auto">
         <OpinionPanel />

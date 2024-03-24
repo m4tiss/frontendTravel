@@ -39,7 +39,9 @@ const resources = {
         rating: "Średnia ocena",
         userReviews: "Opinie użytkowników",
         addReview: "Dodaj opinie",
-        addToFavorites: "Dodaj do ulubionych"
+        addToFavorites: "Dodaj do ulubionych",
+        noReviewsAvailable: "Brak dostępnych opini",
+        noRating: "Brak oceny"
       },
       login:{
         login: "Logowanie",
@@ -134,7 +136,9 @@ const resources = {
         rating: "Average rating",
         userReviews: "User reviews",
         addReview: "Add review",
-        addToFavorites: "Add to favorites"
+        addToFavorites: "Add to favorites",
+        noReviewsAvailable: "No reviews available",
+        noRating: "No rating"
       },
       login:{
         login: "Login",

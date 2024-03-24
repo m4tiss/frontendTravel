@@ -13,6 +13,8 @@ const CityPage = () => {
   const { t } = useTranslation();
   let { cityId } = useParams();
   const [city, setCity] = useState({});
+  const [opinions, setOpinions] = useState([]);
+  const [rating, setRating] = useState();
   const { isAuth } = useAuth();
 
   useEffect(() => {
@@ -23,6 +25,20 @@ const CityPage = () => {
     });
   }, []);
 
+  useEffect(() => {
+    axios.get(`/public/getOpinionsByCity/${cityId}`).then((res) => {
+      const uploadedOpinions = res.data;
+      setOpinions(uploadedOpinions);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get(`/public/getRatingByCity/${cityId}`).then((res) => {
+      const rating = res.data;
+      setRating(rating);
+    });
+  }, []);
+
   const continentName =
     city.country && city.country.continent && city.country.continent.name;
   const countryName = city.country && city.country.name;
@@ -30,7 +46,8 @@ const CityPage = () => {
   const formattedPopulation = city.population
     ? city.population.toLocaleString()
     : null;
-  const formattedRating = city.rating ? `${city.rating.toFixed(1)}` : null;
+
+  const formattedRating = rating ? `${rating.toFixed(1)}` : null;
 
   const [showModal, setShowModal] = useState(false);
 
@@ -84,20 +101,32 @@ const CityPage = () => {
             {t("cityPage.population")}: {formattedPopulation}
           </p>
           <div className="mt-10 flex flex-col items-center justify-center">
-            <h2 className="text-2xl font-semibold">{t("cityPage.rating")}</h2>
-            <div className="flex justify-end items-end">
-              <p className="text-5xl font-semibold mt-5">{formattedRating}</p>
-              <p className=" text-xl font-semibold mt-5">/5</p>
-            </div>
-            <div className="flex">
-              <ReactStars
-                count={5}
-                size={50}
-                value={formattedRating}
-                edit={false}
-                color2={"#ffd700"}
-              />
-            </div>
+            {formattedRating ? (
+              <>
+                <h2 className="text-2xl font-semibold">
+                  {t("cityPage.rating")}
+                </h2>
+                <div className="flex justify-end items-end">
+                  <p className="text-5xl font-semibold mt-5">
+                    {formattedRating}
+                  </p>
+                  <p className=" text-xl font-semibold mt-5">/5</p>
+                </div>
+                <div className="flex">
+                  <ReactStars
+                    count={5}
+                    size={50}
+                    value={formattedRating}
+                    edit={false}
+                    color2={"#ffd700"}
+                  />
+                </div>
+              </>
+            ) : (
+              <p className="text-red-600 text-3xl my-5">
+              {t("cityPage.noRating")}
+            </p>
+            )}
           </div>
         </div>
       </div>
@@ -117,7 +146,7 @@ const CityPage = () => {
             {t("cityPage.addToFavorites")} ⭐
           </button>
         </div>
-      ) : null }
+      ) : null}
 
       <Modal
         isOpen={showModal}
@@ -126,8 +155,15 @@ const CityPage = () => {
         <NewReviewModal cityId={city.cityId} onClose={onClose} />
       </Modal>
       <div className="flex flex-col w-4/5 items-center mx-auto">
-        <OpinionPanel />
-        <OpinionPanel />
+        {opinions.length > 0 ? (
+          opinions.map((opinion) => (
+            <OpinionPanel key={opinion.opinionId} opinion={opinion} />
+          ))
+        ) : (
+          <p className="text-red-600 text-3xl">
+            {t("cityPage.noReviewsAvailable")}
+          </p>
+        )}
       </div>
     </div>
   );

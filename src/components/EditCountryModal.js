@@ -12,7 +12,7 @@ const EditCountryModal = (props) => {
   const [data, setData] = useState({
     name: "",
     flagImage: "",
-    description: ""
+    description: "",
   });
 
   useEffect(() => {
@@ -29,8 +29,8 @@ const EditCountryModal = (props) => {
       const uploadedCountry = res.data;
       setData({
         name: uploadedCountry.name,
-        flagImage: uploadedCountry. flagImage,
-        description: uploadedCountry.description
+        flagImage: uploadedCountry.flagImage,
+        description: uploadedCountry.description,
       });
     });
   };
@@ -60,7 +60,7 @@ const EditCountryModal = (props) => {
             value={data.name}
             onChange={(e) => setData({ ...data, name: e.target.value })}
           />
-            <input
+          <input
             className="border-2 p-5 border-yellow-500 outline-none my-5 text-2xl shadow-2xl h-16 w-1/2 md:my-10"
             placeholder={t("modals.flag")}
             value={data.flagImage}

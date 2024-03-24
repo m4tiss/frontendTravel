@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Modal from "react-modal";
 import adminImage from "../images/AdminImage.png";
@@ -33,7 +33,6 @@ const AccountAdminPage = () => {
   useEffect(() => {
     axios.get("/getMostPopularCity").then((res) => {
       setMostPopularCity(res.data);
-      
     });
   }, []);
 
@@ -42,14 +41,12 @@ const AccountAdminPage = () => {
       setOpinionsPerUsers(res.data.toFixed(1));
     });
   }, []);
- 
-  
+
   useEffect(() => {
     axios.get("/getMostActiveUser").then((res) => {
       setMostActiveUser(res.data);
     });
   }, []);
-  
 
   const toggleModal = (modalName) => {
     setModals({
@@ -124,7 +121,9 @@ const AccountAdminPage = () => {
               <h2 className="text-xl xl:text-3xl p-2 font-semibold">
                 {t("admin.stats2")}
               </h2>
-              <h2 className="text-xl xl:text-3xl mx-2">{mostPopularCity.name}</h2>
+              <h2 className="text-xl xl:text-3xl mx-2">
+                {mostPopularCity.name}
+              </h2>
             </div>
             <div className="bg-gray-200 shadow-2xl w-10/12 h-28 flex justify-center items-center">
               <h2 className="text-xl xl:text-3xl p-2 font-semibold">

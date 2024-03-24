@@ -1,5 +1,4 @@
 import { React, useEffect, useState } from "react";
-import "react-slideshow-image/dist/styles.css";
 import { FaRegEdit } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import axios from "../config/axios";

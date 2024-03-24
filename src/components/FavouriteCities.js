@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import CityPanel from "../components/CityPanel";
 import axios from "../config/axios";
 
 const FavouritePanel = () => {
-
-    const { t, i18n } = useTranslation();
-    const [favourites,setFavourites] = useState([])
-
+  const { t } = useTranslation();
+  const [favourites, setFavourites] = useState([]);
 
   useEffect(() => {
     axios.get("/getFavouritesByUser").then((res) => {
       const favouritesCities = res.data;
-      console.log(favouritesCities)
       setFavourites(favouritesCities);
     });
   }, []);
-
 
   return (
     <div className="w-full mb-10">
@@ -24,19 +20,18 @@ const FavouritePanel = () => {
         {t("favouritesCities")}⭐
       </h2>
       <div className="flex flex-wrap gap-10 justify-center items-center">
-
-      {favourites.length > 0 ? (
+        {favourites.length > 0 ? (
           favourites.map((favourite) => (
-            <CityPanel name={favourite.city.name} cityImage={favourite.city.cityImage} flagImage={favourite.city.country.flagImage} cityId={favourite.city.cityId}/>
+            <CityPanel
+              name={favourite.city.name}
+              cityImage={favourite.city.cityImage}
+              flagImage={favourite.city.country.flagImage}
+              cityId={favourite.city.cityId}
+            />
           ))
         ) : (
-          <p className="text-red-600 text-3xl">
-            {t("noFavourite")}
-          </p>
+          <p className="text-red-600 text-3xl">{t("noFavourite")}</p>
         )}
-
-      
-
       </div>
     </div>
   );

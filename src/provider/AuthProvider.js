@@ -1,12 +1,12 @@
-import React, { createContext, useState, useContext,useEffect } from 'react';
-import axios from '../config/axios';
+import { React, createContext, useState, useContext, useEffect } from "react";
+import axios from "../config/axios";
 
 const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
-  const tokenKey = 'authToken';
+  const tokenKey = "authToken";
   const [token, setToken] = useState(localStorage.getItem(tokenKey) || null);
 
   const getToken = () => {
@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
     if (token) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     } else {
-      delete axios.defaults.headers.common['Authorization'];
+      delete axios.defaults.headers.common["Authorization"];
     }
   }, [token]);
 
@@ -36,7 +36,9 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ token,addToken, getToken, setTokenNull, isAuth }}>
+    <AuthContext.Provider
+      value={{ token, addToken, getToken, setTokenNull, isAuth }}
+    >
       {children}
     </AuthContext.Provider>
   );

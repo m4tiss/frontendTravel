@@ -1,5 +1,4 @@
 import { React, useState } from "react";
-import "react-slideshow-image/dist/styles.css";
 import { useTranslation } from "react-i18next";
 import axios from "../config/axios";
 

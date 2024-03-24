@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import userImage from "../images/UserImage.png";
+import { React, useEffect, useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
-import FavouritePanel from "../components/FavouriteCities";
-import axios from "../config/axios";
 import { useAuth } from "../provider/AuthProvider";
+import userImage from "../images/UserImage.png";
 import Modal from "react-modal";
 import EditUserModal from "../components/EditUserModal";
+import FavouritePanel from "../components/FavouriteCities";
+import axios from "../config/axios";
 
 const AccountUserPage = () => {
-  const { t, i18n } = useTranslation();
-
   const { token } = useAuth();
   const [user, setUser] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -81,7 +78,7 @@ const AccountUserPage = () => {
                 className="cursor-pointer transition duration-400 transform hover:rotate-45"
                 size={40}
                 color="green"
-                onClick={()=>toogleModal()}
+                onClick={() => toogleModal()}
               />
             </div>
             <Modal

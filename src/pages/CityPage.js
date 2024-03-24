@@ -1,13 +1,13 @@
 import { React, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useAuth } from "../provider/AuthProvider";
 import ReactCountryFlag from "react-country-flag";
 import Modal from "react-modal";
 import OpinionPanel from "../components/OpinionPanel";
 import NewReviewModal from "../components/NewReviewModal";
 import ReactStars from "react-stars";
-import { useTranslation } from "react-i18next";
 import axios from "../config/axios";
-import { useAuth } from "../provider/AuthProvider";
 
 const CityPage = () => {
   const { t } = useTranslation();
@@ -22,7 +22,8 @@ const CityPage = () => {
   useEffect(() => {
     const fetchFavourites = () => {
       setTimeout(() => {
-        axios.get("/getFavouritesByUser")
+        axios
+          .get("/getFavouritesByUser")
           .then((res) => {
             const favouritesCities = res.data;
             setFavourites(favouritesCities);
@@ -32,13 +33,11 @@ const CityPage = () => {
           });
       }, 200);
     };
-  
+
     if (isAuth()) {
       fetchFavourites();
     }
   }, [isAuth]);
-  
-  
 
   useEffect(() => {
     axios.get(`/public/getCity/${cityId}`).then((res) => {
@@ -83,50 +82,51 @@ const CityPage = () => {
 
   const handleAddToFavourites = () => {
     const favouriteDto = {
-        cityId: city.cityId
+      cityId: city.cityId,
     };
 
-    axios.post("/addFavourite", favouriteDto)
-        .then(response => {
-            console.log('Favourite added successfully');
-            window.location.reload();
-        })
-        .catch(error => {
-            console.error('Error while adding favourite:', error);
-        });
-};
-
+    axios
+      .post("/addFavourite", favouriteDto)
+      .then((response) => {
+        console.log("Favourite added successfully");
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("Error while adding favourite:", error);
+      });
+  };
 
   const handleRemoveFromFavourites = () => {
-    const favouriteToRemove = favourites.find(fav => fav.city.cityId === city.cityId);
+    const favouriteToRemove = favourites.find(
+      (fav) => fav.city.cityId === city.cityId
+    );
 
     if (!favouriteToRemove) {
-        console.error('Favourite not found');
-        return;
+      console.error("Favourite not found");
+      return;
     }
-    console.log(favouriteToRemove)
 
-    axios.delete(`/removeFavourite/${favouriteToRemove.favouriteId}`)
-        .then(response => {
-            console.log('Favourite removed successfully');
-            window.location.reload();
-        })
-        .catch(error => {
-            console.error('Error while removing favourite:', error);
-        });
-};
-
+    axios
+      .delete(`/removeFavourite/${favouriteToRemove.favouriteId}`)
+      .then((response) => {
+        console.log("Favourite removed successfully");
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("Error while removing favourite:", error);
+      });
+  };
 
   useEffect(() => {
     if (Array.isArray(favourites) && favourites.length > 0) {
-        const isFavourite = favourites.some((fav) => {
-            return fav.city.cityId === city.cityId;
-        });
-        setIsFavourite(isFavourite);
+      const isFavourite = favourites.some((fav) => {
+        return fav.city.cityId === city.cityId;
+      });
+      setIsFavourite(isFavourite);
     } else {
-        setIsFavourite(false);
+      setIsFavourite(false);
     }
-}, [favourites]);
+  }, [favourites]);
 
   return (
     <div className="w-full min-h-full flex flex-col">

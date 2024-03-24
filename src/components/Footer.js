@@ -9,7 +9,7 @@ import {
 import { Link } from "react-router-dom";
 
 const Footer = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className="min-h-96 flex-col md:flex-row flex items-center justify-evenly w-full md:min-h-40 bg-blue-700">

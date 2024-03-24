@@ -1,5 +1,6 @@
-import NavBar from "./components/Navbar";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useAuth } from "./provider/AuthProvider";
+import NavBar from "./components/Navbar";
 import MainPage from "./pages/MainPage";
 import LoginPage from "./pages/LoginPage";
 import Registration from "./pages/RegistrationPage";
@@ -8,10 +9,8 @@ import Footer from "./components/Footer";
 import AllCitiesPanel from "./pages/AllCitiesPage";
 import ExampleFooterPage from "./pages/ExampleFooterPage";
 import AccountPage from "./pages/AccountPage";
-
-import "./index.css";
 import AuthProvider from "./provider/AuthProvider";
-import { useAuth } from "./provider/AuthProvider";
+import "./index.css";
 
 function App() {
   return (
@@ -22,17 +21,23 @@ function App() {
           <Routes>
             <Route path="/">
               <Route index element={<MainPage />} />
-              <Route path="Registration" element={<AuthRoute component={<Registration />} />} />
-              <Route path="Login" element={<AuthRoute component={<LoginPage />} />} />
-               <Route
+              <Route
+                path="Registration"
+                element={<AuthRoute component={<Registration />} />}
+              />
+              <Route
+                path="Login"
+                element={<AuthRoute component={<LoginPage />} />}
+              />
+              <Route
                 path="Account"
                 element={<PrivateRoute component={<AccountPage />} />}
               />
-              
+
               <Route path="Footer" element={<ExampleFooterPage />} />
               <Route path="CityPage/:cityId" element={<CityPage />} />
               <Route path="AllCities" element={<AllCitiesPanel />} />
-               <Route
+              <Route
                 path="Account"
                 element={<PrivateRoute component={<AccountPage />} />}
               />
@@ -54,8 +59,7 @@ function PrivateRoute({ component }) {
 function AuthRoute({ component }) {
   const { isAuth } = useAuth();
 
-  return isAuth() ?  <Navigate to="/Account" />:component ;
+  return isAuth() ? <Navigate to="/Account" /> : component;
 }
-
 
 export default App;

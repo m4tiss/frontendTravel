@@ -3,13 +3,16 @@ import { useTranslation } from "react-i18next";
 import Modal from "react-modal";
 import adminImage from "../images/AdminImage.png";
 import AddCityModal from "../components/AddCityModal";
-import EditCityModal from "../components/EditCityModal"
+import EditCityModal from "../components/EditCityModal";
 import EditCountryModal from "../components/EditCountryModal";
-import AddCountryModal from '../components/AddCountryModal'
+import AddCountryModal from "../components/AddCountryModal";
 import RemoveReviewModal from "../components/RemoveReviewModal";
+import axios from "../config/axios";
 
 const AccountAdminPage = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+  const [countUsers, setCountUsers] = useState(0);
+  const [mostPopularCity, setMostPopularCity] = useState({});
 
   const [modals, setModals] = useState({
     addCountry: false,
@@ -18,6 +21,20 @@ const AccountAdminPage = () => {
     editCity: false,
     removeReview: false,
   });
+
+  useEffect(() => {
+    axios.get("/countUsers").then((res) => {
+      setCountUsers(res.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get("/getMostPopularCity").then((res) => {
+      setMostPopularCity(res.data);
+    });
+  }, []);
+
+ 
 
   const toggleModal = (modalName) => {
     setModals({
@@ -50,19 +67,34 @@ const AccountAdminPage = () => {
       <div className="w-full xl:w-8/12 flex flex-col">
         <div className="xl:flex">
           <div className="w-full xl:w-96 flex flex-col items-center gap-10 my-20 xl:my-0">
-            <button onClick={() => toggleModal('addCountry')} className="bg-green-500 hover:bg-green-600 w-40 h-20 rounded-full shadow-2xl text-white">
+            <button
+              onClick={() => toggleModal("addCountry")}
+              className="bg-green-500 hover:bg-green-600 w-40 h-20 rounded-full shadow-2xl text-white"
+            >
               {t("admin.addCountry")}
             </button>
-            <button onClick={() => toggleModal('editCountry')} className="bg-blue-400 hover:bg-blue-600 w-40 h-20 rounded-full shadow-2xl text-white">
+            <button
+              onClick={() => toggleModal("editCountry")}
+              className="bg-blue-400 hover:bg-blue-600 w-40 h-20 rounded-full shadow-2xl text-white"
+            >
               {t("admin.editCountry")}
             </button>
-            <button onClick={() => toggleModal('addCity')} className="bg-purple-500 hover:bg-purple-600 w-40 h-20 rounded-full shadow-2xl text-white">
+            <button
+              onClick={() => toggleModal("addCity")}
+              className="bg-purple-500 hover:bg-purple-600 w-40 h-20 rounded-full shadow-2xl text-white"
+            >
               {t("admin.addCity")}
             </button>
-            <button onClick={() => toggleModal('editCity')} className="bg-yellow-500 hover:bg-yellow-600 w-40 h-20 rounded-full shadow-2xl text-white">
+            <button
+              onClick={() => toggleModal("editCity")}
+              className="bg-yellow-500 hover:bg-yellow-600 w-40 h-20 rounded-full shadow-2xl text-white"
+            >
               {t("admin.editCity")}
             </button>
-            <button onClick={() => toggleModal('removeReview')} className="bg-red-500 hover:bg-red-600 w-40 h-20 rounded-full shadow-2xl text-white">
+            <button
+              onClick={() => toggleModal("removeReview")}
+              className="bg-red-500 hover:bg-red-600 w-40 h-20 rounded-full shadow-2xl text-white"
+            >
               {t("admin.removeReview")}
             </button>
           </div>
@@ -71,13 +103,13 @@ const AccountAdminPage = () => {
               <h2 className="text-xl xl:text-3xl p-2 font-semibold">
                 {t("admin.stats1")}
               </h2>
-              <h2 className="text-xl xl:text-3xl mx-2 ">200 000</h2>
+              <h2 className="text-xl xl:text-3xl mx-2 ">{countUsers}</h2>
             </div>
             <div className="bg-gray-200 shadow-2xl w-10/12 h-28 flex justify-center items-center">
               <h2 className="text-xl xl:text-3xl p-2 font-semibold">
                 {t("admin.stats2")}
               </h2>
-              <h2 className="text-xl xl:text-3xl mx-2">Warszawa</h2>
+              <h2 className="text-xl xl:text-3xl mx-2">{mostPopularCity.name}</h2>
             </div>
             <div className="bg-gray-200 shadow-2xl w-10/12 h-28 flex justify-center items-center">
               <h2 className="text-xl xl:text-3xl p-2 font-semibold">

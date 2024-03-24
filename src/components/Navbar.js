@@ -7,19 +7,20 @@ import { useTranslation } from "react-i18next";
 import RegisterAndLoginButtons from "./RegisterAndLoginButtons";
 import UserAndLogout from "./UserAndLogout";
 import { useAuth } from '../provider/AuthProvider';
+import { setLanguage } from "../translation/i18n";
 
 
 
 const NavBar = () => {
   const [nav, setNav] = useState(true);
-  const { t, i18n } = useTranslation();
+  const { t, i18n} = useTranslation();
   const { isAuth } = useAuth();
  
 
 
 
   const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
+    setLanguage(lng);
   };
 
   return (

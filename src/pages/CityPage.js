@@ -78,14 +78,39 @@ const CityPage = () => {
   };
 
   const handleAddToFavourites = () => {
+    const favouriteDto = {
+        cityId: city.cityId
+    };
 
-    window.location.reload()
-  };
+    axios.post("/addFavourite", favouriteDto)
+        .then(response => {
+            console.log('Favourite added successfully');
+            window.location.reload();
+        })
+        .catch(error => {
+            console.error('Error while adding favourite:', error);
+        });
+};
+
+
   const handleRemoveFromFavourites = () => {
+    const favouriteToRemove = favourites.find(fav => fav.city.cityId === city.cityId);
 
-    window.location.reload();
-    
-  };
+    if (!favouriteToRemove) {
+        console.error('Favourite not found');
+        return;
+    }
+    console.log(favouriteToRemove)
+
+    axios.delete(`/removeFavourite/${favouriteToRemove.favouriteId}`)
+        .then(response => {
+            console.log('Favourite removed successfully');
+            window.location.reload();
+        })
+        .catch(error => {
+            console.error('Error while removing favourite:', error);
+        });
+};
 
   useEffect(() => {
     const isFavourite = favourites.some((fav) => {

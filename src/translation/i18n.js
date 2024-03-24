@@ -205,17 +205,34 @@ const resources = {
   },
 };
 
+
+const localStorageKey = 'selectedLanguage';
+
+const getDefaultLanguage = () => {
+  const selectedLanguage = localStorage.getItem(localStorageKey);
+  if (selectedLanguage) {
+    return selectedLanguage;
+  } else {
+    return 'pl';
+  }
+};
+
 i18n
 
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     debug: true,
-    lng: "pl",
+    lng: getDefaultLanguage(),
     interpolation: {
       escapeValue: false,
     },
     resources,
   });
+
+export const setLanguage = (language) => {
+    i18n.changeLanguage(language);
+    localStorage.setItem(localStorageKey, language);
+  };
 
 export default i18n;

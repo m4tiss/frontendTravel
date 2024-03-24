@@ -69,6 +69,7 @@ const resources = {
 
       },
       favouritesCities:"Ulubione miasta",
+      noFavourite: "Brak ulubionych miast",
       admin:{
         addCountry: "Dodaj kraj",
         editCountry: "Edytuj kraj",
@@ -166,6 +167,7 @@ const resources = {
         
       },
       favouritesCities:"Favourites cities",
+      noFavourite: "No favourites",
       admin:{
         addCountry: "Add country",
         editCountry: "Edit country",

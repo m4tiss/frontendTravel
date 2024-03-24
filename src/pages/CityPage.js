@@ -160,7 +160,7 @@ const CityPage = () => {
             <OpinionPanel key={opinion.opinionId} opinion={opinion} />
           ))
         ) : (
-          <p className="text-red-600 text-3xl">
+          <p className="text-red-600 my-10 text-3xl">
             {t("cityPage.noReviewsAvailable")}
           </p>
         )}

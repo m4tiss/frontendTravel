@@ -6,8 +6,7 @@ import Registration from "./pages/RegistrationPage";
 import CityPage from "./pages/CityPage";
 import Footer from "./components/Footer";
 import AllCitiesPanel from "./pages/AllCitiesPage";
-import AccountUserPage from "./pages/AccountUserPage";
-import AccountAdminPage from "./pages/AccountAdminPage";
+import ExampleFooterPage from "./pages/ExampleFooterPage";
 import AccountPage from "./pages/AccountPage";
 
 import "./index.css";
@@ -29,6 +28,8 @@ function App() {
                 path="Account"
                 element={<PrivateRoute component={<AccountPage />} />}
               />
+              
+              <Route path="Footer" element={<ExampleFooterPage />} />
               <Route path="CityPage/:cityId" element={<CityPage />} />
               <Route path="AllCities" element={<AllCitiesPanel />} />
                <Route

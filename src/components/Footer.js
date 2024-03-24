@@ -6,6 +6,7 @@ import {
   FaYoutube,
   FaTiktok,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const { t, i18n } = useTranslation();
@@ -16,29 +17,41 @@ const Footer = () => {
         <p className="font-semibold text-xl text-center md:text-left text-white ">
           {t("footer.help")}
         </p>
-        <p className="text-center md:text-left text-lg text-white flex-1 hover:cursor-pointer">
-          {t("footer.regulations")}
-        </p>
-        <p className="text-center md:text-left text-lg text-white flex-1 hover:cursor-pointer">
-          {t("footer.faq")}
-        </p>
-        <p className="text-center md:text-left text-lg text-white flex-1 hover:cursor-pointer">
-          {t("footer.tutorials")}
-        </p>
+        <Link to="/Footer">
+          <p className="text-center md:text-left text-lg text-white flex-1 hover:cursor-pointer">
+            {t("footer.regulations")}
+          </p>
+        </Link>
+        <Link to="/Footer">
+          <p className="text-center md:text-left text-lg text-white flex-1 hover:cursor-pointer">
+            {t("footer.faq")}
+          </p>
+        </Link>
+        <Link to="/Footer">
+          <p className="text-center md:text-left text-lg text-white flex-1 hover:cursor-pointer">
+            {t("footer.tutorials")}
+          </p>
+        </Link>
       </div>
       <div className="flex flex-col">
         <p className="font-semibold text-xl text-white text-center md:text-left">
           {t("footer.information")}
         </p>
-        <p className="text-center md:text-left text-lg text-white flex-1 hover:cursor-pointer">
-          {t("footer.contact")}
-        </p>
-        <p className="text-center md:text-left text-lg text-white flex-1 hover:cursor-pointer">
-          {t("footer.privacyPolicy")}
-        </p>
-        <p className="text-center md:text-left text-lg text-white flex-1 hover:cursor-pointer">
-          {t("footer.aboutUs")}
-        </p>
+        <Link to="/Footer">
+          <p className="text-center md:text-left text-lg text-white flex-1 hover:cursor-pointer">
+            {t("footer.contact")}
+          </p>
+        </Link>
+        <Link to="/Footer">
+          <p className="text-center md:text-left text-lg text-white flex-1 hover:cursor-pointer">
+            {t("footer.privacyPolicy")}
+          </p>
+        </Link>
+        <Link to="/Footer">
+          <p className="text-center md:text-left text-lg text-white flex-1 hover:cursor-pointer">
+            {t("footer.aboutUs")}
+          </p>
+        </Link>
       </div>
       <div className="flex flex-col gap-5">
         <p className="text-center font-semibold text-xl text-white ">

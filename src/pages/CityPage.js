@@ -21,19 +21,23 @@ const CityPage = () => {
 
   useEffect(() => {
     const fetchFavourites = () => {
-      axios.get("/getFavouritesByUser")
-        .then((res) => {
-          const favouritesCities = res.data;
-          setFavourites(favouritesCities);
-        })
-        .catch((error) => {
-          console.error("Error fetching favourites:", error);
-        });
+      setTimeout(() => {
+        axios.get("/getFavouritesByUser")
+          .then((res) => {
+            const favouritesCities = res.data;
+            setFavourites(favouritesCities);
+          })
+          .catch((error) => {
+            console.error("Error fetching favourites:", error);
+          });
+      }, 200);
     };
+  
     if (isAuth()) {
-        fetchFavourites();
+      fetchFavourites();
     }
   }, [isAuth]);
+  
   
 
   useEffect(() => {
@@ -112,12 +116,17 @@ const CityPage = () => {
         });
 };
 
+
   useEffect(() => {
-    const isFavourite = favourites.some((fav) => {
-      return fav.city.cityId === city.cityId;
-    });
-    setIsFavourite(isFavourite);
-  }, [favourites]);
+    if (Array.isArray(favourites) && favourites.length > 0) {
+        const isFavourite = favourites.some((fav) => {
+            return fav.city.cityId === city.cityId;
+        });
+        setIsFavourite(isFavourite);
+    } else {
+        setIsFavourite(false);
+    }
+}, [favourites]);
 
   return (
     <div className="w-full min-h-full flex flex-col">

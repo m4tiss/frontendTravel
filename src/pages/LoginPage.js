@@ -59,6 +59,7 @@ const LoginPage = () => {
           className="border-blue-500 border-solid border-l-8 p-2 text-3xl my-2 outline-none bg-slate-200"
         ></input>
         <input
+        type="password"
           id="password"
           placeholder="Password"
           className="border-blue-500 border-solid border-l-8 p-2 text-3xl my-2 outline-none bg-slate-200"

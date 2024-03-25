@@ -122,6 +122,7 @@ const resources = {
         editCountry: "Edytuj kraj",
         editUser: "Edytuj użytkownika",
         rating: "Ocena",
+        removeReview: "Usuń opinie"
       },
     },
   },
@@ -243,6 +244,7 @@ const resources = {
         editCountry: "Edit country",
         editUser: "Edit user",
         rating: "Rating",
+        removeReview: "Remove review"
       },
     },
   },

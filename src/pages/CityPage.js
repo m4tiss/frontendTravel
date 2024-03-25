@@ -60,6 +60,8 @@ const CityPage = () => {
     });
   }, []);
 
+
+
   const continentName =
     city.country && city.country.continent && city.country.continent.name;
   const countryName = city.country && city.country.name;

@@ -1,25 +1,31 @@
 import { React, useState, useEffect } from "react";
 import ReactStars from "react-stars";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { useAuth } from "../provider/AuthProvider";
 import axios from "../config/axios";
 
 const OpinionPanel = (props) => {
   const [userOpinions, setuserOpinions] = useState([]);
   const [isUserOpinion, setIsUserOpinion] = useState(false);
 
+  const { isAuth } = useAuth();
+
   useEffect(() => {
-    axios.get("/getUserOpinions").then((res) => {
-      const uploadedUserOpinions = res.data;
-      console.log(uploadedUserOpinions);
-      setuserOpinions(uploadedUserOpinions);
-    });
+    if (isAuth()) {
+      axios.get("/getUserOpinions").then((res) => {
+        const uploadedUserOpinions = res.data;
+        setuserOpinions(uploadedUserOpinions);
+      });
+    }
   }, []);
 
   useEffect(() => {
-    const isOpinionExist = userOpinions.some(
-      (opinion) => opinion.opinionId === props.opinion.opinionId
-    );
-    setIsUserOpinion(isOpinionExist);
+    if (isAuth()) {
+      const isOpinionExist = userOpinions.some(
+        (opinion) => opinion.opinionId === props.opinion.opinionId
+      );
+      setIsUserOpinion(isOpinionExist);
+    }
   }, [userOpinions]);
 
   const handleDelete = () => {

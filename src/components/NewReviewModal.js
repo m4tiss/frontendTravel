@@ -71,6 +71,7 @@ const NewReviewModal = (props) => {
       });
 
       props.onClose();
+      window.location.reload();
     } catch (error) {
       console.error("Error:", error);
     }

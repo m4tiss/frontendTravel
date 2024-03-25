@@ -16,7 +16,7 @@ const EditCountryModal = (props) => {
   });
 
   useEffect(() => {
-    axios.get("/getAllCountries").then((res) => {
+    axios.get("/public/getAllCountries").then((res) => {
       const uploadedCountries = res.data;
       setCountires(uploadedCountries);
     });
@@ -25,7 +25,7 @@ const EditCountryModal = (props) => {
   const handleChoosenCountry = (countryId) => {
     setShowForm(true);
     setCountryId(countryId);
-    axios.get(`/getCountry/${countryId}`).then((res) => {
+    axios.get(`/public/getCountry/${countryId}`).then((res) => {
       const uploadedCountry = res.data;
       setData({
         name: uploadedCountry.name,

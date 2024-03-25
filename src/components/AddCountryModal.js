@@ -14,7 +14,7 @@ const AddCountryModal = (props) => {
   });
 
   useEffect(() => {
-    axios.get("/getAllContinents").then((res) => {
+    axios.get("/public/getAllContinents").then((res) => {
       const uploadedCountinents = res.data;
       setContinents(uploadedCountinents);
     });

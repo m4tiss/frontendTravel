@@ -40,9 +40,9 @@ const RemoveReviewModal = (props) => {
         {opinions.map((opinion) => (
             <div
               key={opinion.opinionId}
-              className="min-h-40 justify-evenly items-center flex bg-gray-200 my-2 text-2xl rounded-full px-10"
+              className="min-h-60 justify-evenly items-center flex bg-gray-200 my-2 text-2xl rounded-full px-10"
             >
-              <div className="flex flex-col px-5 min-w-52">
+              <div className="flex flex-col px-5 w-28 md:min-w-52">
               <p>{opinion.user.nickname}</p>
               <p>{opinion.title}</p>
               </div>

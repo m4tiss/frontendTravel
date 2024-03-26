@@ -70,14 +70,14 @@ const AddCityModal = (props) => {
   };
 
   return (
-    <div className=" bg-white w-8/12 border-2 border-blue-600 rounded-xl flex flex-col">
+    <div className=" bg-white w-8/12 border-2 border-blue-600 rounded-xl flex flex-col max-h-[600px] overflow-y-scroll md:max-h-fit md:overflow-hidden">
       <div className="flex flex-col items-center my-10">
         <h2 className="text-center text-2xl md:mt-10 md:mb-5 font-semibold md:text-4xl">
           {t("modals.addCity")} ✎
         </h2>
         <select
           defaultValue={1}
-          className="block w-80 bg-white border border-yellow-500 p-3 rounded-full shadow-sm focus:outline-non"
+          className="block w-1/2 bg-white border border-yellow-500 p-3 rounded-full shadow-sm focus:outline-non"
           onChange={(e) => setData({ ...data, countryId: e.target.value })}
         >
           {countries.map((country) => (

@@ -48,7 +48,7 @@ const AddCountryModal = (props) => {
         </h2>
         <select
           defaultValue={1}
-          className="block w-80 bg-white border border-yellow-500 p-3 rounded-full shadow-sm focus:outline-non"
+          className="block w-1/2 bg-white border border-yellow-500 p-3 rounded-full shadow-sm focus:outline-non"
           onChange={(e) => setData({ ...data, continentId: e.target.value })}
         >
           {continents.map((continentId) => (

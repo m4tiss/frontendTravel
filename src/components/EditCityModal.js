@@ -101,10 +101,11 @@ const EditCityModal = (props) => {
       ) : (
         <div className="flex flex-col items-center my-5">
           <h2 className="text-3xl my-4">{t("modals.listOfCities")}</h2>
+          <div className="h-[300px] md:h-[400px] overflow-y-scroll">
           {cities.map((city) => (
             <div
               key={city.cityId}
-              className="w-96 h-12 justify-evenly items-center flex bg-gray-200 my-2 text-2xl rounded-full"
+              className="w-full md:w-96 px-5 h-12 justify-evenly items-center flex bg-gray-200 my-2 text-2xl rounded-full"
             >
               <p>{city.name}</p>
               <button onClick={() => handleChoosenCity(city.cityId)}>
@@ -116,6 +117,7 @@ const EditCityModal = (props) => {
               </button>
             </div>
           ))}
+          </div>
           <button
             onClick={props.onClose}
             className="bg-red-500 my-5 md:my-0 h-12 w-24 md:w-40 md:h-20 rounded-full hover:bg-red-600 shadow-2xl text-white"
